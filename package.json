@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "private": "true",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mjt/components": "workspace:*",
+    "@mjt/theme-chalk": "workspace:*",
+    "@mjt/utils": "workspace:*",
+    "typescript": "^5.7.2",
+    "vue": "^3.5.13"
+  }
+}
