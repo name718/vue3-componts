@@ -3,6 +3,8 @@
 </script>
 
 <template>
-  <div>测试</div>
+  <div>
+    <z-icon :color="'red'" :size="17">hello</z-icon>
+  </div>
 </template>
 

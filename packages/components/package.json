@@ -8,5 +8,8 @@
   },
   "keywords": [],
   "author": "@mjt",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "unplugin-vue-define-options": "^1.5.2"
+  }
 }
