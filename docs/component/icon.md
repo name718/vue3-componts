@@ -14,17 +14,11 @@ import { CashOutline } from '@vicons/ionicons5';
 </script>
 
 <template>
-  <z-icon color="red" size="40">
-    <CashOutline />
-  </z-icon>
-
-  <z-icon color="green" size="60">
-    <CashOutline />
-  </z-icon>
-
-  <z-icon color="blue" size="60">
-    <CashOutline />
-  </z-icon>
+  <div>
+    <z-icon color="red" size="40">
+      <CashOutline />
+    </z-icon>
+  </div>
 </template>
 
 ```vue
@@ -45,4 +39,3 @@ import { CashOutline } from '@vicons/ionicons5';
 |---|----|-----|---|
 |color|string|undefined|图标颜色|
 |size|number\| string|undefined|图片大小|
-
