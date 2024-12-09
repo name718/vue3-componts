@@ -19,6 +19,10 @@ export const treeProps = {
     type: Array as PropType<TreeOptions[]>,
     default: () => []
   },
+  defaultCheckedKeys: {
+    type: Array as PropType<Key[]>,
+    default: () => []
+  },
   labelFiled: {
     type: String,
     default: 'label'

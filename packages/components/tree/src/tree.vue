@@ -3,7 +3,7 @@
 </template>
 <script setup lang="ts">
 import { treeProps, TreeNode, TreeOptions } from './tree'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 defineOptions({ name: 'z-tree' });
 const props = defineProps(treeProps)
 
@@ -55,4 +55,33 @@ watch(() => props.data, (data: TreeOptions[]) => {
         immediate: true
     })
 
+// 拍平树结构
+const expandedKeysSet = ref(new Set(props.defaultCheckedKeys))
+const flattenTree = computed(() => {
+    let expandedKeys = expandedKeysSet.value
+    let flattenNodes: TreeNode[] = []
+    const nodes = tree.value || []
+
+    const stack: TreeNode[] = []
+
+    for (let i = nodes.length - 1; i >= 0; i--) {
+        stack.push(nodes[i])
+    }
+    while (stack.length) {
+        const node = stack.pop()
+        if (!node) continue
+        flattenNodes.push(node)
+        if (expandedKeys.has(node.key)) {
+            const children = node.children
+            if (children) {
+                for (let i = node.children.length - 1; i >= 0; i--) {
+                    stack.push(node.children[i])
+                }
+            }
+        }
+    }
+
+    return flattenNodes
+})
+console.log(flattenTree.value)
 </script>

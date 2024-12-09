@@ -34,6 +34,7 @@ console.log(data)
     <z-icon :color="'yellow'" :size="17">
       <AddCircle />
     </z-icon>
-    <z-tree :data="data" label-filed="label" key-filed="key" children-filed="children" s></z-tree>
+    <z-tree :default-checked-keys="['40', '41']" :data="data" label-filed="label" key-filed="key"
+      children-filed="children" s></z-tree>
   </div>
 </template>
