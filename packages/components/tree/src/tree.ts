@@ -4,11 +4,14 @@ type Key = string | number;
 export interface TreeNode extends Required<TreeOptions> {
   level: number;
   rawNode: TreeOptions;
+  children: TreeNode[];
+  isLeaf: boolean;
 }
 export interface TreeOptions {
   label?: Key;
   key?: Key;
   children?: TreeOptions[];
+  isLeaf: boolean;
   [key: string]: unknown;
 }
 export const treeProps = {
