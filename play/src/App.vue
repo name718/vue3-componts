@@ -23,7 +23,7 @@ function createLabel(level: number): string {
 }
 
 const data = ref<Array<Record<string, any>>>(createData())
-console.log(data)
+// console.log(data)
 </script>
 
 <template>

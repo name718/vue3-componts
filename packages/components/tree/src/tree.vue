@@ -1,12 +1,19 @@
 <template>
-    <div>tree</div>
+    <div :class="bem.b()">
+        <z-tree-node :expanded="isExpanded(node)" v-for="node in flattenTree" :key="node.key"
+            :node="node"></z-tree-node>
+    </div>
 </template>
 <script setup lang="ts">
+import { createNamespace } from '@mjt/utils/create';
 import { treeProps, TreeNode, TreeOptions } from './tree'
 import { computed, ref, watch } from 'vue'
+import ZTreeNode from './treeNode.vue'
+
 defineOptions({ name: 'z-tree' });
 const props = defineProps(treeProps)
 
+const bem = createNamespace('tree')
 // 格式化数据
 const tree = ref<TreeNode[]>([])
 function createOptions(key: string, label: string, children: string) {
@@ -84,4 +91,8 @@ const flattenTree = computed(() => {
     return flattenNodes
 })
 console.log(flattenTree.value)
+
+function isExpanded(node: TreeNode): boolean {
+    return expandedKeysSet.value.has(node.key)
+}
 </script>
