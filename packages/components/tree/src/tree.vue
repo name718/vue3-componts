@@ -1,6 +1,6 @@
 <template>
     <div :class="bem.b()">
-        <z-tree-node :expanded="isExpanded(node)" v-for="node in flattenTree" :key="node.key"
+        <z-tree-node @toggle="toggleExpand" :expanded="isExpanded(node)" v-for="node in flattenTree" :key="node.key"
             :node="node"></z-tree-node>
     </div>
 </template>
@@ -94,5 +94,19 @@ console.log(flattenTree.value)
 
 function isExpanded(node: TreeNode): boolean {
     return expandedKeysSet.value.has(node.key)
+}
+function collpase(node: TreeNode) {
+    expandedKeysSet.value.delete(node.key)
+}
+function expand(node: TreeNode) {
+    expandedKeysSet.value.add(node.key)
+}
+function toggleExpand(node: TreeNode) {
+    const expandKeys = expandedKeysSet.value
+    if (expandKeys.has(node.key)) {
+        collpase(node)
+    } else {
+        expand(node)
+    }
 }
 </script>
