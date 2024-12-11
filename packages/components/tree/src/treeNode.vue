@@ -4,7 +4,8 @@
             <span @click="handleExpand(node)"
                 :class="[bem.e('expand-icon'), { expanded: props.expanded && !node.isLeaf }, bem.is('leaf', node.isLeaf)]">
                 <z-icon size="25">
-                    <Switcher />
+                    <Switcher v-if="!isLoading" />
+                    <Loading v-else />
                 </z-icon>
             </span>
             <span>{{ props.node?.label }}</span>
@@ -15,7 +16,9 @@
 import { treeNodeProps, treeNodeEmitts, TreeNode } from './tree';
 import { createNamespace } from '@mjt/utils/create';
 import Switcher from './icon/Switcher';
+import Loading from './icon/Loading'
 import ZIcon from '@mjt/components/icon'
+import { computed } from 'vue';
 
 const props = defineProps(treeNodeProps)
 const bem = createNamespace('tree-node')
@@ -24,4 +27,8 @@ const emit = defineEmits(treeNodeEmitts)
 function handleExpand(node: TreeNode) {
     emit('toggle', props.node)
 }
+
+const isLoading = computed(() => {
+    return props.loadingKeys.has(props.node.key)
+})
 </script>
