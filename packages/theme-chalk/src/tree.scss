@@ -27,4 +27,15 @@
             cursor: default;
         }
     }
+    @include when('selected') {
+        background: aqua ;
+    }
+    @include e('content') {
+        display: flex;
+    }
+    @include e('label') {
+        cursor: pointer;
+        display: flex;
+        flex: 1;
+    }
 }

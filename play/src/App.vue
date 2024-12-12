@@ -1,41 +1,41 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { AddCircle } from "@vicons/ionicons5";
-import { TreeOptions } from '@mjt/components/tree';
-// function createData(level = 4, parentKey = ''): any {
-//   if (!level) return []
-//   const arr = new Array(6 - level).fill(0)
-//   return arr.map((_, idx: number) => {
-//     const key = parentKey + level + idx
-//     return {
-//       label: createLabel(level),
-//       key: key,
-//       children: createData(level - 1, key),
-//     }
-//   })
-// }
-
-// function createLabel(level: number): string {
-//   if (level === 4) return '道生一'
-//   if (level === 3) return '一生二'
-//   if (level === 2) return '二生三'
-//   if (level === 1) return '三生万物'
-//   return ''
-// }
-function createData() {
-  return [
-    {
-      label: nextLabel(),
-      key: 1,
-      isLeaf: false, // 这里修复了 `iSLeal` 为 `isLeaf`
-    },
-    {
-      label: nextLabel(),
-      key: 2,
-      isLeaf: false,
-    },
-  ]
+import { Key, TreeOptions } from '@mjt/components/tree';
+function createData(level = 4, parentKey = ''): any {
+  if (!level) return []
+  const arr = new Array(6 - level).fill(0)
+  return arr.map((_, idx: number) => {
+    const key = parentKey + level + idx
+    return {
+      label: createLabel(level),
+      key: key,
+      children: createData(level - 1, key),
+    }
+  })
 }
+
+function createLabel(level: number): string {
+  if (level === 4) return '道生一'
+  if (level === 3) return '一生二'
+  if (level === 2) return '二生三'
+  if (level === 1) return '三生万物'
+  return ''
+}
+// function createData() {
+//   return [
+//     {
+//       label: nextLabel(),
+//       key: 1,
+//       isLeaf: false, // 这里修复了 `iSLeal` 为 `isLeaf`
+//     },
+//     {
+//       label: nextLabel(),
+//       key: 2,
+//       isLeaf: false,
+//     },
+//   ]
+// }
 
 function nextLabel(currentLabel?: string | undefined | string | number): string {
   if (!currentLabel) return 'Out of Tao, One is born'
@@ -63,6 +63,7 @@ function handleLoad(node: TreeOptions) {
     }, 1000)
   })
 }
+const value = ref<Key[]>([])
 </script>
 
 <template>
@@ -73,6 +74,7 @@ function handleLoad(node: TreeOptions) {
     <z-icon :color="'yellow'" :size="17">
       <AddCircle />
     </z-icon>
-    <z-tree :data="data" :on-load="handleLoad"></z-tree>
+    {{ value }}
+    <z-tree :data="data" :on-load="handleLoad" v-model:selected-keys="value" selectable multiple></z-tree>
   </div>
 </template>

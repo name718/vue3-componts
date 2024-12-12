@@ -1,12 +1,13 @@
 <template>
     <div :class="bem.b()">
         <z-tree-node :loadingKeys="loadingKeyRef" @toggle="toggleExpand" :expanded="isExpanded(node)"
-            v-for="node in flattenTree" :key="node.key" :node="node"></z-tree-node>
+            v-for="node in flattenTree" :key="node.key" :node="node" :selectedKeys="selectedKeys"
+            @select="handleSelect"></z-tree-node>
     </div>
 </template>
 <script setup lang="ts">
 import { createNamespace } from '@mjt/utils/create';
-import { treeProps, TreeNode, TreeOptions, Key } from './tree'
+import { treeProps, TreeNode, TreeOptions, Key, treeEmitts } from './tree'
 import { computed, ref, watch } from 'vue'
 import ZTreeNode from './treeNode.vue'
 
@@ -128,5 +129,39 @@ function toggleExpand(node: TreeNode) {
     } else {
         expand(node)
     }
+}
+
+const emit = defineEmits(treeEmitts)
+
+const selectedKeysRef = ref<Key[]>([])
+
+watch(() => props.selectedKeys, value => {
+    if (value) {
+        selectedKeysRef.value = value
+        console.log('selectedKeysRef', value)
+    }
+}, { immediate: true })
+
+function handleSelect(node: TreeNode) {
+    let keys = Array.from(selectedKeysRef.value)
+    if (!props.selectable) return
+
+    if (props.multiple) {
+        const index = keys.findIndex(key => key === node.key)
+        if (index > -1) {
+            keys.splice(index, 1)
+        } else {
+            keys.push(node.key)
+        }
+
+    } else {
+        if (keys.includes(node.key)) {
+            keys = []
+        } else {
+            keys = [node.key]
+        }
+    }
+
+    emit('update:selectedKeys', keys)
 }
 </script>
