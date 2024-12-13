@@ -7,8 +7,8 @@
 </template>
 <script setup lang="ts">
 import { createNamespace } from '@mjt/utils/create';
-import { treeProps, TreeNode, TreeOptions, Key, treeEmitts } from './tree'
-import { computed, ref, watch } from 'vue'
+import { treeProps, TreeNode, TreeOptions, Key, treeEmitts, treeInjectKey } from './tree'
+import { computed, provide, ref, useSlots, watch } from 'vue'
 import ZTreeNode from './treeNode.vue'
 
 defineOptions({ name: 'z-tree' });
@@ -43,7 +43,8 @@ function createTree(data: TreeOptions[], parent: TreeNode | null = null): any {
                 children: [],
                 rawNode: node,
                 level: parent ? parent.level + 1 : 0,
-                isLeaf: node.isLeaf ?? children.length === 0
+                isLeaf: node.isLeaf ?? children.length === 0,
+                disabled: !!node.disabled
             }
             if (children.length > 0) {
                 treeNode.children = traversal(children, treeNode)
@@ -164,4 +165,7 @@ function handleSelect(node: TreeNode) {
 
     emit('update:selectedKeys', keys)
 }
+provide(treeInjectKey, {
+    slots: useSlots()
+})
 </script>

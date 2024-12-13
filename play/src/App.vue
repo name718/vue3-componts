@@ -51,6 +51,33 @@ function nextLabel(currentLabel?: string | undefined | string | number): string 
 }
 
 const data = ref(createData())
+// const data = ref<TreeOptions[]>([
+//   {
+//     key: '0',
+//     label: '0',
+//     children: [
+//       {
+//         key: '0-0',
+//         label: '0-0',
+//       },
+//       {
+//         disabled: true,
+//         key: '0-1',
+//         label: '0-1',
+//         children: [
+//           {
+//             key: '0-1-0',
+//             label: '0-1-0',
+//           },
+//           {
+//             key: '0-1-1',
+//             label: '0-1-1',
+//           },
+//         ],
+//       },
+//     ],
+//   },
+// ])
 // console.log(data)
 function handleLoad(node: TreeOptions) {
   return new Promise<TreeOptions[]>((resolve, reject) => {
@@ -75,6 +102,10 @@ const value = ref<Key[]>([])
       <AddCircle />
     </z-icon>
     {{ value }}
-    <z-tree :data="data" :on-load="handleLoad" v-model:selected-keys="value" selectable multiple></z-tree>
+    <z-tree :data="data" :on-load="handleLoad" v-model:selected-keys="value" selectable>
+      <template #default="{ node }">
+        {{ node.key }} - {{ node.label }}
+      </template>
+    </z-tree>
   </div>
 </template>

@@ -8,7 +8,21 @@
 @include b('tree-node') {
     padding: 5px 0;
     font-size: 16px;
-
+    &:not(.is-disabled){
+        .z-tree-node__label{
+            cursor: pointer;
+            display: flex;
+            flex: 1;
+        }
+    }
+    &.is-disabled{
+        .z-tree-node__label{
+            cursor: not-allowed;
+            display: flex;
+            flex: 1;
+            background: #ccc;
+        }
+    }
     &:hover{
         background: blue;
     }
@@ -33,9 +47,9 @@
     @include e('content') {
         display: flex;
     }
-    @include e('label') {
-        cursor: pointer;
-        display: flex;
-        flex: 1;
-    }
+    // @include e('label') {
+    //     cursor: pointer;
+    //     display: flex;
+    //     flex: 1;
+    // }
 }

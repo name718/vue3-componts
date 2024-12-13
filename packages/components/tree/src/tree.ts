@@ -1,4 +1,4 @@
-import { ExtractPropTypes, PropType } from 'vue';
+import { ExtractPropTypes, InjectionKey, PropType, SetupContext } from 'vue';
 
 export type Key = string | number;
 export interface TreeNode extends Required<TreeOptions> {
@@ -12,6 +12,7 @@ export interface TreeOptions {
   key?: Key;
   children?: TreeOptions[];
   isLeaf?: boolean;
+  disabled?: boolean;
   [key: string]: unknown;
 }
 export const treeProps = {
@@ -77,5 +78,19 @@ export const treeEmitts = {
   'update:selectedKeys': (keys: Key[]) => keys
 };
 
+export interface TreeContext {
+  slots: SetupContext['slots'];
+  //   emit: SetupContext<typeof treeEmitts>['emit'];
+}
+
 export type TreeNodeProps = Partial<ExtractPropTypes<typeof treeNodeProps>>;
 type TreeProps = Partial<ExtractPropTypes<typeof treeProps>>;
+
+export const treeInjectKey: InjectionKey<TreeContext> = Symbol();
+
+export const treeNodeContentProps = {
+  node: {
+    type: Object as PropType<TreeNode>,
+    required: true
+  }
+};
