@@ -1,19 +1,19 @@
-import { ExtractPropTypes, InjectionKey, PropType, SetupContext } from 'vue';
+import { ExtractPropTypes, InjectionKey, PropType, SetupContext } from 'vue'
 
-export type Key = string | number;
+export type Key = string | number
 export interface TreeNode extends Required<TreeOptions> {
-  level: number;
-  rawNode: TreeOptions;
-  children: TreeNode[];
-  isLeaf: boolean;
+  level: number
+  rawNode: TreeOptions
+  children: TreeNode[]
+  isLeaf: boolean
 }
 export interface TreeOptions {
-  label?: Key;
-  key?: Key;
-  children?: TreeOptions[];
-  isLeaf?: boolean;
-  disabled?: boolean;
-  [key: string]: unknown;
+  label?: Key
+  key?: Key
+  children?: TreeOptions[]
+  isLeaf?: boolean
+  disabled?: boolean
+  [key: string]: unknown
 }
 export const treeProps = {
   data: {
@@ -48,7 +48,7 @@ export const treeProps = {
     type: Boolean,
     default: false
   }
-} as const;
+} as const
 
 export const treeNodeProps = {
   node: {
@@ -67,30 +67,30 @@ export const treeNodeProps = {
     type: Array as PropType<Key[]>,
     default: () => []
   }
-} as const;
+} as const
 
 export const treeNodeEmitts = {
   toggle: (node: TreeNode) => node,
   select: (node: TreeNode) => node
-};
+}
 
 export const treeEmitts = {
   'update:selectedKeys': (keys: Key[]) => keys
-};
+}
 
 export interface TreeContext {
-  slots: SetupContext['slots'];
+  slots: SetupContext['slots']
   //   emit: SetupContext<typeof treeEmitts>['emit'];
 }
 
-export type TreeNodeProps = Partial<ExtractPropTypes<typeof treeNodeProps>>;
-type TreeProps = Partial<ExtractPropTypes<typeof treeProps>>;
+export type TreeNodeProps = Partial<ExtractPropTypes<typeof treeNodeProps>>
+type TreeProps = Partial<ExtractPropTypes<typeof treeProps>>
 
-export const treeInjectKey: InjectionKey<TreeContext> = Symbol();
+export const treeInjectKey: InjectionKey<TreeContext> = Symbol()
 
 export const treeNodeContentProps = {
   node: {
     type: Object as PropType<TreeNode>,
     required: true
   }
-};
+}

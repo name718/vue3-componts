@@ -1,5 +1,4 @@
-// eslint.config.mjs
-import { defineConfig } from 'eslint-define-config';
+import { defineConfig } from 'eslint-define-config'
 
 export default defineConfig({
   root: true,
@@ -18,7 +17,7 @@ export default defineConfig({
     'eslint:recommended',
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended', // 如果使用 Prettier 进行代码格式化
+    'plugin:prettier/recommended',
   ],
   plugins: ['@typescript-eslint', 'vue'],
   rules: {
@@ -30,6 +29,23 @@ export default defineConfig({
     // Vue 规则
     'vue/multi-word-component-names': 'off',
     'vue/no-v-html': 'off',
+    'vue/max-attributes-per-line': [
+      'error',
+      {
+        singleline: 1,
+        multiline: {
+          max: 1,
+          allowFirstLine: false,
+        },
+      },
+    ],
+    'vue/first-attribute-linebreak': [
+      'error',
+      {
+        singleline: 'beside',
+        multiline: 'below',
+      },
+    ],
 
     // 通用规则
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -42,6 +58,7 @@ export default defineConfig({
         singleQuote: true,
         semi: false,
         trailingComma: 'es5',
+        singleAttributePerLine: true,
       },
     ],
   },
@@ -64,4 +81,4 @@ export default defineConfig({
       },
     },
   },
-});
+})
