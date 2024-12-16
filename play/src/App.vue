@@ -121,6 +121,8 @@
       :on-load="handleLoad"
       v-model:selected-keys="value"
       selectable
+      show-checkbox
+      :default-checked-keys="['40', '41']"
     >
       <template #default="{ node }">{{ node.key }} - {{ node.label }}</template>
     </z-tree>

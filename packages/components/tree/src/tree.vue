@@ -14,6 +14,10 @@
           :node="node"
           :selectedKeys="selectedKeys"
           @select="handleSelect"
+          :showCheckbox="showCheckbox"
+          :checked="isChecked(node)"
+          :disabled="isDisabled(node)"
+          :indeterminate="isIndeterminate(node)"
         ></z-tree-node>
       </template>
     </z-virtual-list>
@@ -100,7 +104,7 @@
   )
 
   // 拍平树结构
-  const expandedKeysSet = ref(new Set(props.defaultCheckedKeys))
+  const expandedKeysSet = ref(new Set(props.defaultExpandedKeys))
   const flattenTree = computed(() => {
     let expandedKeys = expandedKeysSet.value
     let flattenNodes: TreeNode[] = []
@@ -206,4 +210,17 @@
   provide(treeInjectKey, {
     slots: useSlots()
   })
+  const checkedKeysRef = ref(new Set(props.defaultCheckedKeys))
+
+  function isChecked(node: TreeNode) {
+    return checkedKeysRef.value.has(node.key)
+  }
+  function isDisabled(node: TreeNode) {
+    return !!node.disabled
+  }
+
+  const indeterminateRefs = ref<Set<Key>>(new Set())
+  function isIndeterminate(node: TreeNode) {
+    return true
+  }
 </script>

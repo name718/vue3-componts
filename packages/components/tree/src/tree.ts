@@ -20,7 +20,7 @@ export const treeProps = {
     type: Array as PropType<TreeOptions[]>,
     default: () => []
   },
-  defaultCheckedKeys: {
+  defaultExpandedKeys: {
     type: Array as PropType<Key[]>,
     default: () => []
   },
@@ -47,6 +47,14 @@ export const treeProps = {
   multiple: {
     type: Boolean,
     default: false
+  },
+  defaultCheckedKeys: {
+    type: Array as PropType<Key[]>,
+    default: () => []
+  },
+  showCheckbox: {
+    type: Boolean,
+    default: false
   }
 } as const
 
@@ -66,6 +74,22 @@ export const treeNodeProps = {
   selectedKeys: {
     type: Array as PropType<Key[]>,
     default: () => []
+  },
+  showCheckbox: {
+    type: Boolean,
+    default: false
+  },
+  checked: {
+    type: Boolean,
+    default: false
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  indeterminate: {
+    type: Boolean,
+    default: false
   }
 } as const
 

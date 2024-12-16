@@ -23,6 +23,12 @@
           <Loading v-else />
         </z-icon>
       </span>
+      <z-checkbox
+        v-if="props.showCheckbox"
+        module-value="checked"
+        :disabled="disabled"
+        :indeterminate="indeterminate"
+      ></z-checkbox>
       <span
         :class="bem.e('label')"
         @click="handleSeleted"
@@ -44,6 +50,7 @@
   import Switcher from './icon/Switcher'
   import Loading from './icon/Loading'
   import ZIcon from '@mjt/components/icon'
+  import ZCheckbox from '@mjt/components/checkbox'
   import ZTreeNodeContent from './tree-node-content'
 
   const props = defineProps(treeNodeProps)
