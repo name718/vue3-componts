@@ -275,7 +275,6 @@
   function toggleCheck(node: TreeNode, checked: boolean) {
     toogle(node, checked)
     updateCheckedKeys(node)
-    return true
   }
 
   onMounted(() => {
