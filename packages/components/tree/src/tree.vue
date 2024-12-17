@@ -18,6 +18,7 @@
           :checked="isChecked(node)"
           :disabled="isDisabled(node)"
           :indeterminate="isIndeterminate(node)"
+          @check="toggleCheck"
         ></z-tree-node>
       </template>
     </z-virtual-list>
@@ -33,7 +34,7 @@
     treeEmitts,
     treeInjectKey
   } from './tree'
-  import { computed, provide, ref, useSlots, watch } from 'vue'
+  import { computed, onMounted, provide, ref, useSlots, watch } from 'vue'
   import ZTreeNode from './treeNode.vue'
   import ZVirtualList from '@mjt/components/virtual-list'
 
@@ -80,7 +81,8 @@
           rawNode: node,
           level: parent ? parent.level + 1 : 0,
           isLeaf: node.isLeaf ?? children.length === 0,
-          disabled: !!node.disabled
+          disabled: !!node.disabled,
+          parentKey: parent?.key
         }
         if (children.length > 0) {
           treeNode.children = traversal(children, treeNode)
@@ -221,6 +223,64 @@
 
   const indeterminateRefs = ref<Set<Key>>(new Set())
   function isIndeterminate(node: TreeNode) {
+    return indeterminateRefs.value.has(node.key)
+  }
+  function toogle(node: TreeNode, checked: boolean) {
+    let checkedKeys = checkedKeysRef.value
+    checkedKeys[checked ? 'add' : 'delete'](node.key)
+    if (checked) {
+      indeterminateRefs.value.delete(node.key)
+    }
+    let children = node.children
+    if (children) {
+      children.forEach((childNode) => {
+        if (!childNode.disabled) {
+          toogle(childNode, checked)
+        }
+      })
+    }
+  }
+  function findNode(key: Key) {
+    return flattenTree.value.find((node) => node.key === key)
+  }
+  function updateCheckedKeys(node: TreeNode) {
+    if (node.parentKey) {
+      let parentNode = findNode(node.parentKey)
+      if (parentNode) {
+        let allChecked = true
+        let hasChecked = false
+
+        let nodes = parentNode.children
+
+        for (let node of nodes) {
+          if (checkedKeysRef.value.has(node.key)) {
+            hasChecked = true
+          } else if (indeterminateRefs.value.has(node.key)) {
+            allChecked = false
+          } else {
+            allChecked = false
+          }
+        }
+        if (allChecked) {
+          checkedKeysRef.value.add(node.key)
+          indeterminateRefs.value.delete(parentNode.key)
+        } else if (hasChecked) {
+          checkedKeysRef.value.delete(node.key)
+          indeterminateRefs.value.add(parentNode.key)
+        }
+        updateCheckedKeys(parentNode)
+      }
+    }
+  }
+  function toggleCheck(node: TreeNode, checked: boolean) {
+    toogle(node, checked)
+    updateCheckedKeys(node)
     return true
   }
+
+  onMounted(() => {
+    // checkedKeysRef.value.forEach((key) => {
+    //   toggleCheck(findNode(key)!, true)
+    // })
+  })
 </script>

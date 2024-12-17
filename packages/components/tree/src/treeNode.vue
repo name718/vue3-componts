@@ -28,6 +28,7 @@
         module-value="checked"
         :disabled="disabled"
         :indeterminate="indeterminate"
+        @change="handleChange"
       ></z-checkbox>
       <span
         :class="bem.e('label')"
@@ -77,4 +78,8 @@
   // 虚拟节点 不能直接使用
   // const treeContext = inject(treeInjectKey)
   // console.log(treeContext?.slots)
+
+  function handleChange(val: boolean) {
+    emit('check', props.node, val)
+  }
 </script>
