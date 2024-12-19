@@ -48,8 +48,8 @@
     treeInjectKey
   } from './tree'
   import { createNamespace } from '@mjt/utils/create'
-  import Switcher from './icon/Switcher'
-  import Loading from './icon/Loading'
+  import Switcher from '@mjt/components/internal-icon/Switcher'
+  import Loading from '@mjt/components/internal-icon/Loading'
   import ZIcon from '@mjt/components/icon'
   import ZCheckbox from '@mjt/components/checkbox'
   import ZTreeNodeContent from './tree-node-content'

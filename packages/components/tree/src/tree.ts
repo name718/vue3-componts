@@ -97,7 +97,7 @@ export const treeNodeProps = {
 export const treeNodeEmitts = {
   toggle: (node: TreeNode) => node,
   select: (node: TreeNode) => node,
-  check: (node: TreeNode, value: boolean) => void
+  check: (node: TreeNode, value: boolean) => Boolean
 }
 
 export const treeEmitts = {

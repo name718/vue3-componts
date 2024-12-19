@@ -103,7 +103,7 @@
 
 <template>
   <div>
-    <z-icon
+    <!-- <z-icon
       :color="'red'"
       :size="17"
     >
@@ -132,6 +132,23 @@
       :indeterminate="true"
       label="节点"
       @change="handleChange"
-    ></z-checkbox>
+    ></z-checkbox> -->
+    <z-button>按钮</z-button>
+    <z-button
+      size="medium"
+      type="warning"
+    >
+      大按钮
+    </z-button>
+    <z-button :loading="true">loading</z-button>
+    <z-button :disabled="true">loading</z-button>
+    <z-button :round="true">loading</z-button>
+    <z-button>
+      <template #icon>
+        <z-icon>
+          <AddCircle></AddCircle>
+        </z-icon>
+      </template>
+    </z-button>
   </div>
 </template>
