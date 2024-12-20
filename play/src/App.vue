@@ -99,6 +99,9 @@
   const handleChange = (val: boolean) => {
     console.log(val)
   }
+  const handleClick = () => {
+    console.log('handleClick')
+  }
 </script>
 
 <template>
@@ -137,6 +140,7 @@
     <z-button
       size="medium"
       type="warning"
+      @click="handleClick"
     >
       大按钮
     </z-button>
