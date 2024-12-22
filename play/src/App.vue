@@ -136,7 +136,7 @@
       label="节点"
       @change="handleChange"
     ></z-checkbox> -->
-    <z-button>按钮</z-button>
+    <!-- <z-button>按钮</z-button>
     <z-button
       size="medium"
       type="warning"
@@ -153,6 +153,20 @@
           <AddCircle></AddCircle>
         </z-icon>
       </template>
-    </z-button>
+    </z-button> -->
+    <z-input>
+      <template #prepend>123</template>
+      <template #prefixIcon>
+        <z-icon>
+          <AddCircle></AddCircle>
+        </z-icon>
+      </template>
+      <template #sufixIcon>
+        <z-icon>
+          <AddCircle></AddCircle>
+        </z-icon>
+      </template>
+      <template #append>qwe</template>
+    </z-input>
   </div>
 </template>
