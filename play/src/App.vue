@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
   import { ref } from 'vue'
   import { AddCircle } from '@vicons/ionicons5'
   import { Key, TreeOptions } from '@mjt/components/tree'
@@ -103,11 +103,11 @@
     console.log('handleClick')
   }
   const name = ref('')
-</script>
+</script> -->
 
-<template>
-  <div>
-    <!-- <z-icon
+<!-- <template> -->
+<!-- <div> -->
+<!-- <z-icon
       :color="'red'"
       :size="17"
     >
@@ -137,7 +137,7 @@
       label="节点"
       @change="handleChange"
     ></z-checkbox> -->
-    <!-- <z-button>按钮</z-button>
+<!-- <z-button>按钮</z-button>
     <z-button
       size="medium"
       type="warning"
@@ -155,7 +155,7 @@
         </z-icon>
       </template>
     </z-button> -->
-    <z-input v-model:modelValue="name">
+<!-- <z-input v-model:modelValue="name">
       <template #prepend>123</template>
       <template #prefixIcon>
         <z-icon>
@@ -169,5 +169,35 @@
       </template>
       <template #append>qwe</template>
     </z-input>
-  </div>
+  </div> -->
+<!-- </template> -->
+
+<script setup lang="ts">
+  import { reactive } from 'vue'
+
+  const state = reactive({
+    username: '',
+    password: ''
+  })
+</script>
+<template>
+  <z-form-item
+    prop="username"
+    label="用户名"
+  >
+    <z-input
+      placeholder="请输入用户名"
+      :clearable="true"
+      v-model="state.username"
+    ></z-input>
+  </z-form-item>
+  <z-form-item prop="password">
+    <z-input
+      placeholder="请输入密码"
+      :show-password="true"
+      :clearable="true"
+      v-model="state.password"
+    ></z-input>
+    <template #label>密码</template>
+  </z-form-item>
 </template>
