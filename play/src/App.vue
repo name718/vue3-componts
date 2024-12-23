@@ -102,6 +102,7 @@
   const handleClick = () => {
     console.log('handleClick')
   }
+  const name = ref('')
 </script>
 
 <template>
@@ -154,7 +155,7 @@
         </z-icon>
       </template>
     </z-button> -->
-    <z-input>
+    <z-input v-model:modelValue="name">
       <template #prepend>123</template>
       <template #prefixIcon>
         <z-icon>
