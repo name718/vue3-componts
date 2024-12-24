@@ -181,31 +181,48 @@
   })
 </script>
 <template>
-  <z-form-item
-    prop="username"
-    label="用户名"
+  <z-form
+    :model="state"
     :rules="[
-      { required: true, message: '请输入用户名', trigger: 'blur' },
       {
-        min: 3,
-        message: '用户名长度至少为3个字符',
-        trigger: ['blur', 'change']
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          {
+            min: 3,
+            message: '用户名长度至少为3个字符',
+            trigger: ['blur', 'change']
+          }
+        ],
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
       }
     ]"
   >
-    <z-input
-      placeholder="请输入用户名"
-      :clearable="true"
-      v-model="state.username"
-    ></z-input>
-  </z-form-item>
-  <z-form-item prop="password">
-    <z-input
-      placeholder="请输入密码"
-      :show-password="true"
-      :clearable="true"
-      v-model="state.password"
-    ></z-input>
-    <template #label>密码</template>
-  </z-form-item>
+    <z-form-item
+      prop="username"
+      label="用户名"
+      :rules="[
+        { required: true, message: '请输入用户名', trigger: 'blur' },
+        {
+          min: 3,
+          message: '用户名长度至少为3个字符',
+          trigger: ['blur', 'change']
+        }
+      ]"
+    >
+      <z-input
+        placeholder="请输入用户名"
+        :clearable="true"
+        v-model="state.username"
+      ></z-input>
+    </z-form-item>
+    <z-form-item prop="password">
+      <z-input
+        placeholder="请输入密码"
+        :show-password="true"
+        :clearable="true"
+        v-model="state.password"
+      ></z-input>
+      <template #label>密码</template>
+    </z-form-item>
+  </z-form>
 </template>

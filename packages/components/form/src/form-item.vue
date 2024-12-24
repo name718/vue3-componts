@@ -21,13 +21,15 @@
 </template>
 <script lang="ts" setup>
   import { createNamespace } from '@mjt/utils/create'
-  import { defineProps, provide, ref, toRefs, reactive } from 'vue'
+  import { defineProps, provide, ref, toRefs, reactive, computed } from 'vue'
   import {
     formItemProps,
     FormItemValidateState,
     formItemContextKey,
-    FormItemContext
+    FormItemContext,
+    FormItemRule
   } from './form-item'
+  import { rules } from 'eslint-plugin-vue'
   const bem = createNamespace('form-item')
   const props = defineProps(formItemProps)
   defineOptions({
@@ -37,11 +39,32 @@
   const validateState = ref<FormItemValidateState>('')
   const validateMessage = ref('校验失败')
 
+  const _rules = computed(() => {
+    const rules: FormItemRule[] = props.rules
+      ? Array.isArray(props.rules)
+        ? props.rules
+        : [props.rules]
+      : []
+
+    return rules
+  })
+
+  const getRuleFiltered = (trigger: string) => {
+    return _rules.value.filter((rule) => {
+      if (!rule.trigger || !trigger) return true
+      if (Array.isArray(rule.trigger)) {
+        return rule.trigger.includes(trigger)
+      } else {
+        return rule.trigger === trigger
+      }
+    })
+  }
   const validate: FormItemContext['validate'] = async (
     trigger: string,
     callback?
   ) => {
-    console.log('validate', trigger)
+    const rules = getRuleFiltered(trigger)
+    console.log('validate', trigger, rules)
   }
   const context: FormItemContext = reactive({
     ...toRefs(props),
