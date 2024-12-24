@@ -184,6 +184,14 @@
   <z-form-item
     prop="username"
     label="用户名"
+    :rules="[
+      { required: true, message: '请输入用户名', trigger: 'blur' },
+      {
+        min: 3,
+        message: '用户名长度至少为3个字符',
+        trigger: ['blur', 'change']
+      }
+    ]"
   >
     <z-input
       placeholder="请输入用户名"

@@ -5,9 +5,10 @@ import Tree from '@mjt/components/tree'
 import Checkbox from '@mjt/components/checkbox'
 import Button from '@mjt/components/button'
 import Input from '@mjt/components/input'
+import { FormItem } from '@mjt/components/form'
 import '@mjt/theme-chalk/src/index.scss'
 
-const plugins = [Icon, Tree, Checkbox, Button, Input]
+const plugins = [Icon, Tree, Checkbox, Button, Input, FormItem]
 const app = createApp(App)
 plugins.forEach((plugin) => app.use(plugin))
 

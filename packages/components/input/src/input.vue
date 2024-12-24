@@ -66,9 +66,13 @@
     ref,
     onMounted,
     nextTick,
-    computed
+    computed,
+    inject
   } from 'vue'
+  import { formItemContextKey } from '../../form/src/form-item'
   import { inputEmits, inputProps } from './input'
+
+  const formItemContext = inject(formItemContextKey, null)
 
   const bem = createNamespace('input')
   const props = defineProps(inputProps)
@@ -92,8 +96,9 @@
     focus()
   }
   watch(
-    () => attrs.modelValue,
+    () => props.modelValue,
     () => {
+      formItemContext?.validate('change')
       setNativeInputValue()
     }
   )
@@ -112,6 +117,7 @@
     emit('change', value)
   }
   function handleBlur(e: FocusEvent) {
+    formItemContext?.validate('blur')
     emit('blur', e)
   }
   function handleFocus(e: FocusEvent) {
