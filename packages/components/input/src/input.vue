@@ -98,7 +98,7 @@
   watch(
     () => props.modelValue,
     () => {
-      formItemContext?.validate('change')
+      formItemContext?.validate('change').catch(() => {})
       setNativeInputValue()
     }
   )
@@ -117,7 +117,7 @@
     emit('change', value)
   }
   function handleBlur(e: FocusEvent) {
-    formItemContext?.validate('blur')
+    formItemContext?.validate('blur').catch(() => {})
     emit('blur', e)
   }
   function handleFocus(e: FocusEvent) {

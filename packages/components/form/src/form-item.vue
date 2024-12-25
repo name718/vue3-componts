@@ -28,7 +28,8 @@
     ref,
     toRefs,
     reactive,
-    computed
+    computed,
+    onMounted
   } from 'vue'
   import {
     formItemProps,
@@ -104,6 +105,7 @@
       })
       .catch((error) => {
         onValidateFailed(error)
+        return Promise.reject(error)
       })
     console.log('validate', trigger, rules, formContext?.model, props.prop)
   }
@@ -112,4 +114,7 @@
     validate
   })
   provide(formItemContextKey, context)
+  onMounted(() => {
+    formContext?.addField(context)
+  })
 </script>

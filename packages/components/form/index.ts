@@ -9,6 +9,8 @@ export { FormItem, Form }
 export default {}
 export type { FormItemProps } from './src/form-item'
 export type { FormProps } from './src/form'
+
+export type FormInstance = InstanceType<typeof Form>
 declare module 'vue' {
   export interface GlobalComponents {
     ZFormItem: typeof FormItem
