@@ -21,31 +21,49 @@
 </template>
 <script lang="ts" setup>
   import { createNamespace } from '@mjt/utils/create'
-  import { defineProps, provide, ref, toRefs, reactive, computed } from 'vue'
+  import {
+    inject,
+    defineProps,
+    provide,
+    ref,
+    toRefs,
+    reactive,
+    computed
+  } from 'vue'
   import {
     formItemProps,
     FormItemValidateState,
     formItemContextKey,
     FormItemContext,
-    FormItemRule
+    FormItemRule,
+    Arrayable
   } from './form-item'
+  import { formContextKey } from './form'
   import { rules } from 'eslint-plugin-vue'
+  import AsyncValidator from 'async-validator'
+
   const bem = createNamespace('form-item')
   const props = defineProps(formItemProps)
   defineOptions({
     name: 'z-form-item'
   })
-
+  const formContext = inject(formContextKey)
   const validateState = ref<FormItemValidateState>('')
-  const validateMessage = ref('校验失败')
-
+  const validateMessage = ref('')
+  const converArray = (
+    rules: Arrayable<FormItemRule> | undefined
+  ): FormItemRule[] => {
+    return rules ? (Array.isArray(rules) ? rules : [rules]) : []
+  }
   const _rules = computed(() => {
-    const rules: FormItemRule[] = props.rules
-      ? Array.isArray(props.rules)
-        ? props.rules
-        : [props.rules]
-      : []
-
+    const rules: FormItemRule[] = converArray(props.rules)
+    const formRules = formContext?.rules
+    if (formRules && props.prop) {
+      const formPropRules = formRules[props.prop]
+      if (formPropRules) {
+        rules.push(...converArray(formPropRules))
+      }
+    }
     return rules
   })
 
@@ -59,12 +77,35 @@
       }
     })
   }
+  const onValidateSuccess = () => {
+    validateState.value = 'success'
+    validateMessage.value = ''
+  }
+  const onValidateFailed = (err) => {
+    validateState.value = 'error'
+    const { errors } = err
+    validateMessage.value = errors ? errors[0].message : 'error'
+  }
   const validate: FormItemContext['validate'] = async (
     trigger: string,
     callback?
   ) => {
     const rules = getRuleFiltered(trigger)
-    console.log('validate', trigger, rules)
+    const modelName = props.prop
+    const validator = new AsyncValidator({
+      [modelName]: rules
+    })
+    validator
+      .validate({
+        [modelName]: modelName[modelName]
+      })
+      .then(() => {
+        onValidateSuccess()
+      })
+      .catch((error) => {
+        onValidateFailed(error)
+      })
+    console.log('validate', trigger, rules, formContext?.model, props.prop)
   }
   const context: FormItemContext = reactive({
     ...toRefs(props),

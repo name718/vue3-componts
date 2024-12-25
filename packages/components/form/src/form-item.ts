@@ -1,10 +1,10 @@
 import type { RuleItem } from 'async-validator'
 import { ExtractPropTypes, InjectionKey, PropType } from 'vue'
 
-export type Arratyable<T> = T | T[]
+export type Arrayable<T> = T | T[]
 
 export interface FormItemRule extends RuleItem {
-  trigger?: Arratyable<string>
+  trigger?: Arrayable<string>
 }
 
 export const formItemValidateState = [
@@ -27,7 +27,7 @@ export const formItemProps = {
     default: ''
   },
   rules: {
-    type: [Object, Array] as PropType<Arratyable<FormItemRule>>,
+    type: [Object, Array] as PropType<Arrayable<FormItemRule>>,
     default: () => []
   },
   showMessage: {
