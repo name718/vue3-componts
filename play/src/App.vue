@@ -172,7 +172,7 @@
   </div> -->
 <!-- </template> -->
 
-<script setup lang="ts">
+<!-- <script setup lang="ts">
   import { reactive } from 'vue'
 
   const state = reactive({
@@ -219,4 +219,9 @@
       <template #label>密码</template>
     </z-form-item>
   </z-form>
+</template> -->
+
+<script lang="ts" setup></script>
+<template>
+  <z-upload></z-upload>
 </template>
