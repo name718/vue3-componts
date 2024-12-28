@@ -18,7 +18,7 @@ export const baseProps = {
   },
   action: {
     type: String,
-    required: ''
+    required: true
   },
   multiple: {
     type: Boolean,
@@ -102,3 +102,7 @@ export const uploadProps = {
   } // 上传失败回调
 } as const
 export type UploadProps = Partial<ExtractPropTypes<typeof uploadProps>>
+
+let id = 0
+
+export const genId = () => id++

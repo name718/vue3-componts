@@ -221,7 +221,19 @@
   </z-form>
 </template> -->
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  import { UploadRawFile } from '@mjt/components/upload'
+
+  const handleBeforeUpload = (fileRaw: UploadRawFile) => {
+    console.log('before upload', fileRaw)
+    return true
+  }
+</script>
 <template>
-  <z-upload></z-upload>
+  <z-upload
+    :multiple="true"
+    :before-upload="handleBeforeUpload"
+  >
+    <z-button>点我上传</z-button>
+  </z-upload>
 </template>
