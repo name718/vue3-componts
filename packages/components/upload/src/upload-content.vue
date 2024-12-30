@@ -3,7 +3,13 @@
     @click="handleClick"
     :class="[bem.b()]"
   >
-    <slot></slot>
+    <template v-if="drag">
+      <uploadDragger @file="uploadFiles">
+        <slot></slot>
+      </uploadDragger>
+    </template>
+    <template v-else><slot></slot></template>
+
     <input
       :name="name"
       ref="inputRef"
@@ -20,6 +26,7 @@
   import { genId, UploadRawFile } from './upload'
   import { ref } from 'vue'
   import { httpRequest } from './ajax'
+  import uploadDragger from './upload-dragger.vue'
 
   const bem = createNamespace('upload')
   const inputRef = ref<HTMLInputElement | null>(null)
@@ -53,14 +60,17 @@
       }
     })
   }
-  const handleChange = (e: Event) => {
-    const files = (e.target as HTMLInputElement).files
+  const uploadFiles = (files: FileList) => {
     for (let i = 0; i < files!.length; i++) {
       const rawFile = files![i] as UploadRawFile
       rawFile.uid = genId()
       props.onStart?.(rawFile)
       upload(rawFile)
     }
+  }
+  const handleChange = (e: Event) => {
+    const files = (e.target as HTMLInputElement).files!
+    uploadFiles(files)
   }
   const handleClick = () => {
     inputRef.value!.value = ''

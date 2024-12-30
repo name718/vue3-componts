@@ -44,6 +44,10 @@ export const baseProps = {
   data: {
     type: Object,
     default: () => ({})
+  },
+  drag: {
+    type: Boolean,
+    default: false
   }
 } as const
 
