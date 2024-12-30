@@ -70,12 +70,14 @@ export const uploadProps = {
   }, // 文件状态改变时的钩子
   beforeRemove: {
     type: Function as PropType<
-      (file: UploadFile, uploadFile: UploadFile) => boolean | Promise<boolean>
+      (file: UploadFile, uploadFiles: UploadFiles) => boolean | Promise<boolean>
     >,
     default: NOOP
   }, // 删除文件之前的钩子
   onRemove: {
-    type: Function as PropType<(file: UploadFile) => void>,
+    type: Function as PropType<
+      (file: UploadFile, uploadFiles: UploadFiles) => void
+    >,
     default: NOOP
   }, // 文件移除时的钩子
   onProgress: {

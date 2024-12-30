@@ -34,3 +34,15 @@ export const uploadContentProps = {
 } as const
 
 export type UploadContentProps = ExtractPropTypes<typeof uploadContentProps>
+
+export interface RequestOptions {
+  method: string
+  file: File
+  name: string
+  action: string
+  data: Record<string, any>
+  headers: Headers | Record<string, any>
+  onError: (error: any, rawFile?: UploadRawFile) => void
+  onSuccess: (res: any, rawFile?: UploadRawFile) => void
+  onProgress: (e: UploadProgressEvent, rawFile?: UploadRawFile) => void
+}
