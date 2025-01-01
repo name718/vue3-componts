@@ -17,6 +17,7 @@
     "@mjt/theme-chalk": "workspace:*",
     "@mjt/utils": "workspace:*",
     "async-validator": "^4.2.5",
+    "dayjs": "^1.11.13",
     "eslint": "^9.16.0",
     "eslint-plugin-vue": "^9.32.0",
     "globals": "^15.13.0",

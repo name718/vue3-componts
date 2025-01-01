@@ -221,7 +221,7 @@
   </z-form>
 </template> -->
 
-<script lang="ts" setup>
+<!-- <script lang="ts" setup>
   import { UploadRawFile } from '@mjt/components/upload'
 
   const handleBeforeUpload = (fileRaw: UploadRawFile) => {
@@ -236,4 +236,13 @@
   >
     <z-button>点我上传</z-button>
   </z-upload>
+</template> -->
+
+<template>
+  <z-calendar v-model="date"></z-calendar>
 </template>
+<script setup lang="ts">
+  import { ref } from 'vue'
+
+  const date = ref(new Date())
+</script>
