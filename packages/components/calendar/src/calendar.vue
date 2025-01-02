@@ -1,13 +1,17 @@
 <template>
   <div :class="nsCal.b()">
     <div :class="nsCal.e('header')">
-      <div :class="nsCal.e('title')"></div>
+      <div :class="nsCal.e('title')">{{ currentDate }}</div>
       <div :class="nsCal.e('button-group')">
-        <z-button>前一年</z-button>
-        <z-button>上个月</z-button>
-        <z-button>今天</z-button>
-        <z-button>下个月</z-button>
-        <z-button>下一年</z-button>
+        <z-button @click="($event) => selectDate('prev-year')">前一年</z-button>
+        <z-button @click="($event) => selectDate('prev-month')">
+          上个月
+        </z-button>
+        <z-button @click="($event) => selectDate('today')">今天</z-button>
+        <z-button @click="($event) => selectDate('next-month')">
+          下个月
+        </z-button>
+        <z-button @click="($event) => selectDate('next-year')">下一年</z-button>
       </div>
     </div>
     <div :class="nsCal.e('body')">
@@ -23,11 +27,17 @@
             :key="rid"
           >
             <td
+              @click="($event) => handlePick(cell)"
               v-for="(cell, cid) in row"
               :key="cid"
-              :class="nsDay.b()"
+              :class="[nsDay.b(), getCellClass(cell)]"
             >
-              {{ cell.text }}
+              <slot
+                name="date-cell"
+                :data="getSlotData(cell)"
+              >
+                {{ cell.text }}
+              </slot>
             </td>
           </tr>
         </tbody>
@@ -40,8 +50,14 @@
   import ZButton from '@mjt/components/button'
   import dayjs from 'dayjs'
   import type { Dayjs } from 'dayjs'
-  import { computed } from 'vue'
-  import { calendarProps, CalendarDateCell } from './calendar'
+  import { computed, ref } from 'vue'
+  import {
+    calendarEmits,
+    calendarProps,
+    CalendarDateCell,
+    CalendarDateType,
+    CalendarDateCellType
+  } from './calendar'
 
   const nsCal = createNamespace('calendar')
   const nsTable = createNamespace('calendar-table')
@@ -112,7 +128,78 @@
       return list.slice(i * 7, i + 7)
     })
   })
-  const handlePrevYear = () => {
-    console.log('prev year')
+
+  const prevMonth = computed(() => {
+    return date.value.subtract(1, 'month').date(1)
+  })
+  const nextMonth = computed(() => {
+    return date.value.add(1, 'month').date(1)
+  })
+  const prevYear = computed(() => {
+    return date.value.subtract(1, 'year').date(1)
+  })
+  const nextYear = computed(() => {
+    return date.value.add(1, 'year').date(1)
+  })
+  const emit = defineEmits(calendarEmits)
+  const pickDate = (day: Dayjs) => {
+    selectDay.value = day
+    emit('update:modelValue', day.toDate())
+  }
+
+  const selectDate = (type: CalendarDateType) => {
+    // 策略优化
+
+    const dateMap: Record<CalendarDateType, Dayjs> = {
+      'prev-year': prevYear.value,
+      'prev-month': prevMonth.value,
+      today: now,
+      'next-month': nextMonth.value,
+      'next-year': nextYear.value
+    }
+
+    const day = dateMap[type]
+    pickDate(day)
+  }
+  const formatter = (text: number, type: CalendarDateCellType): Dayjs => {
+    switch (type) {
+      case 'prev':
+        return date.value.startOf('month').subtract(1, 'month').date(text)
+      case 'current':
+        return date.value.date(text)
+      case 'next':
+        return date.value.endOf('month').add(1, 'month').date(text)
+    }
+  }
+  const selectDay = ref<Dayjs>()
+  const handlePick = ({ text, type }: CalendarDateCell) => {
+    let day = formatter(text, type)
+    pickDate(day)
+  }
+
+  const getCellClass = ({ text, type }: CalendarDateCell) => {
+    const clazz: string[] = [type]
+    const date = formatter(text, type)
+    if (date.isSame(selectDay.value, 'day')) {
+      clazz.push(nsDay.is('selected', true))
+    }
+    if (date.isSame(now, 'day')) {
+      clazz.push(nsDay.is('today', true))
+    }
+    return clazz
+  }
+
+  const currentDate = computed(() => {
+    return `${date.value.year()}年${date.value.month() + 1}月`
+  })
+
+  const getSlotData = (cell: CalendarDateCell) => {
+    let day = formatter(cell.text, cell.type)
+    return {
+      isSelected: day.isSame(selectDay.value),
+      day: day.format('YYYY-MM-DD'),
+      date: day.toDate(),
+      cell
+    }
   }
 </script>

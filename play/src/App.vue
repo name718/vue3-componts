@@ -239,7 +239,11 @@
 </template> -->
 
 <template>
-  <z-calendar v-model="date"></z-calendar>
+  <z-calendar v-model="date">
+    <template #date-cell="{ data }">
+      {{ data }}
+    </template>
+  </z-calendar>
 </template>
 <script setup lang="ts">
   import { ref } from 'vue'
