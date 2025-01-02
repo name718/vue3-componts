@@ -8,6 +8,7 @@ import Input from '@mjt/components/input'
 import { FormItem, Form } from '@mjt/components/form'
 import Upload from '@mjt/components/upload'
 import Calendar from '@mjt/components/calendar'
+import VirtualScrollList from '@mjt/components/virtual-scroll-list'
 import '@mjt/theme-chalk/src/index.scss'
 
 const plugins = [
@@ -19,7 +20,8 @@ const plugins = [
   Checkbox,
   Button,
   Input,
-  FormItem
+  FormItem,
+  VirtualScrollList
 ]
 const app = createApp(App)
 plugins.forEach((plugin) => app.use(plugin))

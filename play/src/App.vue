@@ -237,7 +237,7 @@
     <z-button>点我上传</z-button>
   </z-upload>
 </template> -->
-
+<!-- 
 <template>
   <z-calendar v-model="date">
     <template #date-cell="{ data }">
@@ -249,4 +249,51 @@
   import { ref } from 'vue'
 
   const date = ref(new Date())
+</script> -->
+
+<script setup lang="ts">
+  import { Random } from 'mockjs'
+  import { DefineComponent, ref } from 'vue'
+  import Item from './Item.vue'
+  const totalCount = 10000
+
+  interface DataType {
+    id: number
+    name: string
+    desc: string
+    index: number
+  }
+
+  const data: Array<DataType> = []
+
+  let index = 0
+  while (index < totalCount) {
+    data.push({
+      id: index,
+      name: Random.cname(),
+      desc: Random.csentence(),
+      index: index
+    })
+    index++
+  }
+
+  const items = ref(data)
 </script>
+<template>
+  <z-virtual-scroll-list
+    :data-sources="items"
+    class="virtual-list"
+    data-key="id"
+    :keep="30"
+    :estimate-size="80"
+    :data-component="Item as DefineComponent<{}, {}, any>"
+  ></z-virtual-scroll-list>
+</template>
+<style lang="scss">
+  .virtual-list {
+    width: 100%;
+    height: 500px;
+    overflow-y: scroll;
+    border: 3px solid #000;
+  }
+</style>
