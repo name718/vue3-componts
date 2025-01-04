@@ -53,7 +53,7 @@ export default defineComponent({
       }
       return (
         <div>
-          <div style="{paddingStyle}">{getRenderComponent()}</div>
+          <div style={paddingStyle}>{getRenderComponent()}</div>
         </div>
       )
     }
