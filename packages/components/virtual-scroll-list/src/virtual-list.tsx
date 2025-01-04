@@ -6,7 +6,7 @@ export default defineComponent({
   props: virtualProps,
   setup(props, { slots }) {
     const range = ref<RangeOptions | null>(null)
-    const update = (newRange) => {
+    const update = (newRange: RangeOptions) => {
       range.value = newRange
     }
     let virtual: ReturnType<typeof initVirtual> | null = null
