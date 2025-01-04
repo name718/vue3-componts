@@ -26,3 +26,19 @@ export const virtualProps = {
 } as const
 
 export type VirtualProps = ExtractPropTypes<typeof virtualProps>
+
+export type RangeOptions = {
+  start: number
+  end: number
+  padFront: number
+  padBehind: number
+}
+
+export type VirtualOptions = {
+  keeps: number
+  buffer: number
+  uniqueIds: string[]
+  estimateSize: number
+}
+
+export type updateType = (range: RangeOptions) => void

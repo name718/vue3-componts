@@ -1,5 +1,8 @@
 <template>
-  <div class="item">
+  <div
+    class="item"
+    :style="{ height: '80px' }"
+  >
     <div class="head">
       <span>{{ source.index }}</span>
       <span>{{ source.name }}</span>
