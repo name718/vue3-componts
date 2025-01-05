@@ -1,4 +1,4 @@
-import { DefineComponent, PropType, ExtractPropTypes } from 'vue'
+import { DefineComponent, PropType, ExtractPropTypes, Prop } from 'vue'
 
 export const virtualProps = {
   dataSources: {
@@ -42,3 +42,17 @@ export type VirtualOptions = {
 }
 
 export type updateType = (range: RangeOptions) => void
+
+export const virtualItemProps = {
+  uniqueKey: {
+    type: [String, Number] as PropType<string | number>
+  },
+  source: {
+    type: Object,
+    require: true
+  },
+  component: {
+    type: [Object, Function] as PropType<DefineComponent<{}, {}, any>>
+  }
+} as const
+export type VirtualItemProps = ExtractPropTypes<typeof virtualItemProps>

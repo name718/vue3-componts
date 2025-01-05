@@ -1,6 +1,8 @@
-import { defineComponent, h, onBeforeMount, ref } from 'vue'
+import { defineComponent, onBeforeMount, ref } from 'vue'
 import { virtualProps, RangeOptions } from './props'
 import { initVirtual } from './virtual'
+import VirtualItem from './virtual-item'
+
 export default defineComponent({
   name: 'ZVirtualScrollList',
   props: virtualProps,
@@ -38,13 +40,23 @@ export default defineComponent({
         const dataSource = dataSources[index]
         const uniqueKey = (dataSource as any)[dataKey]
         slots.push(
-          <dataComponent
-            key={uniqueKey}
+          <VirtualItem
+            uniqueKey={uniqueKey}
             source={dataSource}
-          ></dataComponent>
+            component={dataComponent}
+            onItemResize={onItemResize}
+          ></VirtualItem>
+          //   <dataComponent
+          //     key={uniqueKey}
+          //     source={dataSource}
+          //   ></dataComponent>
         )
       }
       return slots
+    }
+    function onItemResize(id: string | number, size: number) {
+      console.log(id, size)
+      virtual.saveSize(id, size)
     }
     const root = ref<HTMLElement | null>()
     function onScroll() {

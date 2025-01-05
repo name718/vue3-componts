@@ -1,19 +1,33 @@
 import { updateType, VirtualOptions, RangeOptions } from './props'
+
+const enum CALC_TYPE {
+  INIT = 'INIT',
+  FIXED = 'FIXED',
+  DYNAMIC = 'DYNAMIC'
+}
 export const initVirtual = (param: VirtualOptions, update: updateType) => {
   const offsetValue = 0
+  let calcType = CALC_TYPE.INIT
+  const sizes = new Map<string | number, number>()
+  let fixedSizeVal = 0
   const range: RangeOptions = {
     start: 0,
     end: 0,
     padFront: 0,
     padBehind: 0
   }
-
+  function isFixed() {
+    return calcType === CALC_TYPE.FIXED
+  }
+  function getEstimateSize() {
+    return isFixed() ? fixedSizeVal : param.estimateSize
+  }
   function getPadFront() {
-    return param.estimateSize * range.start
+    return getEstimateSize() * range.start
   }
 
   function getPadBehind() {
-    return (param.uniqueIds.length - range.end - 1) * param.estimateSize
+    return (param.uniqueIds.length - range.end - 1) * getEstimateSize()
   }
   function updateRange(start: number, end: number) {
     range.start = start
@@ -34,7 +48,7 @@ export const initVirtual = (param: VirtualOptions, update: updateType) => {
     updateRange(start, end)
   }
   function getSCrollOvers() {
-    return Math.floor(offsetValue / param.estimateSize)
+    return Math.floor(offsetValue / getEstimateSize())
   }
   function getEndByStart(start: number) {
     const computeEnd = start + param.keeps - 1
@@ -61,6 +75,17 @@ export const initVirtual = (param: VirtualOptions, update: updateType) => {
       handleBehind()
     }
   }
+
+  function saveSize(id: string | number, size: number) {
+    sizes.set(id, size)
+    if (calcType === CALC_TYPE.INIT) {
+      fixedSizeVal = size
+      calcType = CALC_TYPE.FIXED
+    } else if (calcType === CALC_TYPE.FIXED && fixedSizeVal !== size) {
+      calcType = CALC_TYPE.DYNAMIC
+      fixedSizeVal = 0
+    }
+  }
   checkRange(0, param.keeps - 1)
-  return { handleScroll }
+  return { handleScroll, saveSize }
 }
