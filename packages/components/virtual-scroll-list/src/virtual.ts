@@ -1,5 +1,6 @@
 import { updateType, VirtualOptions, RangeOptions } from './props'
 export const initVirtual = (param: VirtualOptions, update: updateType) => {
+  const offsetValue = 0
   const range: RangeOptions = {
     start: 0,
     end: 0,
@@ -32,7 +33,34 @@ export const initVirtual = (param: VirtualOptions, update: updateType) => {
     }
     updateRange(start, end)
   }
-
+  function getSCrollOvers() {
+    return Math.floor(offsetValue / param.estimateSize)
+  }
+  function getEndByStart(start: number) {
+    const computeEnd = start + param.keeps - 1
+    const end = Math.min(computeEnd, param.uniqueIds.length - 1)
+    return end
+  }
+  function handleFront() {
+    const overs = getSCrollOvers()
+    if (overs > range.start) return
+    const start = Math.max(overs - param.buffer, 0)
+    checkRange(start, getEndByStart(start))
+  }
+  function handleBehind() {
+    const overs = getSCrollOvers()
+    if (overs < range.start + param.buffer) return
+    checkRange(overs, getEndByStart(overs))
+  }
+  function handleScroll(offset: number) {
+    debugger
+    const direction = offset < offsetValue ? 'FRONT' : 'BEHIND'
+    if (direction === 'FRONT') {
+      handleFront()
+    } else if (direction === 'BEHIND') {
+      handleBehind()
+    }
+  }
   checkRange(0, param.keeps - 1)
-  return {}
+  return { handleScroll }
 }

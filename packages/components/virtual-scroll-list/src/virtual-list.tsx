@@ -40,11 +40,18 @@ export default defineComponent({
         slots.push(
           <dataComponent
             key={uniqueKey}
-            dataSource={dataSource}
+            source={dataSource}
           ></dataComponent>
         )
       }
       return slots
+    }
+    const root = ref<HTMLElement | null>()
+    function onScroll() {
+      if (root.value) {
+        const offset = root.value.scrollTop
+        virtual?.handleScroll(offset)
+      }
     }
     return () => {
       const { padFront, padBehind, start, end } = range.value!
@@ -52,7 +59,10 @@ export default defineComponent({
         padding: `${padFront}px 0 ${padBehind}px`
       }
       return (
-        <div>
+        <div
+          onScroll={onScroll}
+          ref={root}
+        >
           <div style={paddingStyle}>{getRenderComponent()}</div>
         </div>
       )
