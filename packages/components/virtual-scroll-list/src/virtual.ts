@@ -10,6 +10,7 @@ export const initVirtual = (param: VirtualOptions, update: updateType) => {
   let calcType = CALC_TYPE.INIT
   const sizes = new Map<string | number, number>()
   let fixedSizeVal = 0
+  let firstRangeAvg = 0
   const range: RangeOptions = {
     start: 0,
     end: 0,
@@ -20,9 +21,23 @@ export const initVirtual = (param: VirtualOptions, update: updateType) => {
     return calcType === CALC_TYPE.FIXED
   }
   function getEstimateSize() {
-    return isFixed() ? fixedSizeVal : param.estimateSize
+    return isFixed() ? fixedSizeVal : firstRangeAvg || param.estimateSize
+  }
+  function getIndexOffset(idx: number) {
+    if (!idx) return 0
+    let offset = 0
+    for (let i = 0; i < idx; i++) {
+      let indexSize = sizes.get(param.uniqueIds[i])
+      offset += typeof indexSize === 'number' ? indexSize : getEstimateSize()
+    }
+    return offset
   }
   function getPadFront() {
+    if (isFixed()) {
+      return fixedSizeVal * range.start
+    } else {
+      getIndexOffset(range.start)
+    }
     return getEstimateSize() * range.start
   }
 
@@ -47,8 +62,23 @@ export const initVirtual = (param: VirtualOptions, update: updateType) => {
     }
     updateRange(start, end)
   }
-  function getSCrollOvers() {
-    return Math.floor(offsetValue / getEstimateSize())
+  function getScrollOvers() {
+    if (isFixed()) return Math.floor(offsetValue / getEstimateSize())
+    let low = 0
+    let hight = param.uniqueIds.length
+    let middle = 0
+    let middleOffset = 0
+    while (low <= hight) {
+      middle = low + Math.floor((hight - low) / 2)
+      if (middleOffset === offsetValue) {
+        return middle
+      } else if (middleOffset < offsetValue) {
+        low = middle + 1
+      } else if (middleOffset > offsetValue) {
+        hight = middle + 1
+      }
+    }
+    return low > 0 ? --low : 0
   }
   function getEndByStart(start: number) {
     const computeEnd = start + param.keeps - 1
@@ -56,13 +86,13 @@ export const initVirtual = (param: VirtualOptions, update: updateType) => {
     return end
   }
   function handleFront() {
-    const overs = getSCrollOvers()
+    const overs = getScrollOvers()
     if (overs > range.start) return
     const start = Math.max(overs - param.buffer, 0)
     checkRange(start, getEndByStart(start))
   }
   function handleBehind() {
-    const overs = getSCrollOvers()
+    const overs = getScrollOvers()
     if (overs < range.start + param.buffer) return
     checkRange(overs, getEndByStart(overs))
   }
@@ -75,7 +105,6 @@ export const initVirtual = (param: VirtualOptions, update: updateType) => {
       handleBehind()
     }
   }
-
   function saveSize(id: string | number, size: number) {
     sizes.set(id, size)
     if (calcType === CALC_TYPE.INIT) {
@@ -84,6 +113,13 @@ export const initVirtual = (param: VirtualOptions, update: updateType) => {
     } else if (calcType === CALC_TYPE.FIXED && fixedSizeVal !== size) {
       calcType = CALC_TYPE.DYNAMIC
       fixedSizeVal = 0
+    }
+    if (calcType === CALC_TYPE.DYNAMIC) {
+      if (sizes.size < Math.min(param.keeps, param.uniqueIds.length)) {
+        firstRangeAvg = Math.round(
+          [...sizes.values()].reduce((acc, val) => acc + val, 0) / sizes.size
+        )
+      }
     }
   }
   checkRange(0, param.keeps - 1)
