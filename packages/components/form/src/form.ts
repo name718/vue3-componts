@@ -1,11 +1,11 @@
 import { ExtractPropTypes, InjectionKey, PropType } from 'vue'
-import { Arrayable, FormItemProps } from './form-item'
+import { Arrayable, FormItemRule } from './form-item'
 import { FormItemContext } from './form-item'
 
 export const formProps = {
   model: Object,
   rules: {
-    type: Object as PropType<Record<string, Arrayable<FormItemProps>>>
+    type: Object as PropType<Record<string, Arrayable<FormItemRule>>>
   },
   showMessage: {
     type: Boolean,

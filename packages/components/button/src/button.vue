@@ -39,16 +39,20 @@
   import { buttonEmits, buttonProps } from './button'
   import LoadingComponent from '@mjt/components/internal-icon/Loading'
   import ZIcon from '@mjt/components/icon'
-  import { useSlots } from 'vue'
+  import { useSlots, type Slots } from 'vue'
+  
   defineOptions({
     name: 'z-button',
     inheritAttrs: false // 不支持用户绑定属性
   })
+  
   const bem = createNamespace('button')
   const props = defineProps(buttonProps)
   const emit = defineEmits(buttonEmits)
 
-  const slots = useSlots()
+  const slots = useSlots() as Slots & {
+    icon?: () => any
+  }
 
   const emitClick = (e: MouseEvent) => {
     emit('click', e)

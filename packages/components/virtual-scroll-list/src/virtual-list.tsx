@@ -56,7 +56,9 @@ export default defineComponent({
     }
     function onItemResize(id: string | number, size: number) {
       console.log(id, size)
-      virtual.saveSize(id, size)
+      if (virtual) {
+        virtual.saveSize(id, size)
+      }
     }
     const root = ref<HTMLElement | null>()
     function onScroll() {
