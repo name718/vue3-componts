@@ -1,14 +1,28 @@
 {
+  "name": "mjt-ui-monorepo",
   "version": "1.0.0",
   "private": "true",
-  "description": "",
+  "type": "module",
+  "description": "MJT UI Component Library",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "pnpm -C play dev",
-    "doc:dev": "pnpm -C docs dev"
+    "doc:dev": "pnpm -C docs dev",
+    "build": "pnpm run build:utils && pnpm run build:theme && pnpm run build:components",
+    "build:utils": "pnpm -C packages/utils build",
+    "build:theme": "pnpm -C packages/theme-chalk build",
+    "build:components": "pnpm -C packages/components build",
+    "clean": "rimraf dist packages/*/dist",
+    "lint": "eslint . --fix",
+    "format": "prettier --write .",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "vue",
+    "vue3",
+    "component-library",
+    "ui"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -29,7 +43,13 @@
     "vue": "^3.5.13"
   },
   "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.1",
-    "sass": "^1.82.0"
-  }
+    "rimraf": "^6.0.1",
+    "sass": "^1.82.0",
+    "tsup": "^8.3.5",
+    "vite": "^5.4.11",
+    "vite-plugin-dts": "^4.3.0"
+  },
+  "packageManager": "pnpm@10.27.0+sha512.72d699da16b1179c14ba9e64dc71c9a40988cbdc65c264cb0e489db7de917f20dcf4d64d8723625f2969ba52d4b7e2a1170682d9ac2a5dcaeaab732b7e16f04a"
 }
