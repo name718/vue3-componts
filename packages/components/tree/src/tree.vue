@@ -7,19 +7,19 @@
     >
       <template #default="{ node }">
         <z-tree-node
-          :loadingKeys="loadingKeyRef"
-          @toggle="toggleExpand"
-          :expanded="isExpanded(node)"
           :key="node.key"
+          :loading-keys="loadingKeyRef"
+          :expanded="isExpanded(node)"
           :node="node"
-          :selectedKeys="selectedKeys"
-          @select="handleSelect"
-          :showCheckbox="showCheckbox"
+          :selected-keys="selectedKeys"
+          :show-checkbox="showCheckbox"
           :checked="isChecked(node)"
           :disabled="isDisabled(node)"
           :indeterminate="isIndeterminate(node)"
+          @toggle="toggleExpand"
+          @select="handleSelect"
           @check="toggleCheck"
-        ></z-tree-node>
+        />
       </template>
     </z-virtual-list>
   </div>
@@ -38,7 +38,7 @@
   import ZTreeNode from './treeNode.vue'
   import ZVirtualList from '@mjt/components/virtual-list'
 
-  defineOptions({ name: 'z-tree' })
+  defineOptions({ name: 'ZTree' })
   const props = defineProps(treeProps)
 
   const bem = createNamespace('tree')

@@ -27,7 +27,7 @@ export const initVirtual = (param: VirtualOptions, update: updateType) => {
     if (!idx) return 0
     let offset = 0
     for (let i = 0; i < idx; i++) {
-      let indexSize = sizes.get(param.uniqueIds[i])
+      const indexSize = sizes.get(param.uniqueIds[i])
       offset += typeof indexSize === 'number' ? indexSize : getEstimateSize()
     }
     return offset
@@ -67,7 +67,7 @@ export const initVirtual = (param: VirtualOptions, update: updateType) => {
     let low = 0
     let hight = param.uniqueIds.length
     let middle = 0
-    let middleOffset = 0
+    const middleOffset = 0
     while (low <= hight) {
       middle = low + Math.floor((hight - low) / 2)
       if (middleOffset === offsetValue) {

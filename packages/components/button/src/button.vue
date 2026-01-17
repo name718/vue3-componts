@@ -16,18 +16,18 @@
     >
       <template v-if="iconPlacement === 'left'">
         <z-icon>
-          <LoadingComponent v-if="loading"></LoadingComponent>
+          <LoadingComponent v-if="loading" />
           <template v-else-if="slots.icon">
-            <component :is="slots.icon"></component>
+            <component :is="slots.icon" />
           </template>
         </z-icon>
       </template>
-      <slot></slot>
+      <slot />
       <template v-if="iconPlacement === 'right'">
         <z-icon>
-          <LoadingComponent v-if="loading"></LoadingComponent>
+          <LoadingComponent v-if="loading" />
           <template v-else-if="slots.icon">
-            <component :is="slots.icon"></component>
+            <component :is="slots.icon" />
           </template>
         </z-icon>
       </template>
@@ -42,7 +42,7 @@
   import { useSlots, type Slots } from 'vue'
   
   defineOptions({
-    name: 'z-button',
+    name: 'ZButton',
     inheritAttrs: false // 不支持用户绑定属性
   })
   

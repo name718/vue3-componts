@@ -2,19 +2,19 @@
   <label :class="bem.b()">
     <span :class="bem.e('input')">
       <input
-        type="checkbox"
-        v-model="model"
         ref="inputRef"
+        v-model="model"
+        type="checkbox"
         :disabled="disabled"
         :value="label"
         @change="handleChange"
-      />
+      >
     </span>
     <span
       v-if="$slots.default || label"
       :class="bem.e('label')"
     >
-      <slot></slot>
+      <slot />
       <template v-if="!$slots.default">{{ label }}</template>
     </span>
   </label>
@@ -28,7 +28,7 @@
   const props = defineProps(checkboxProps)
   const emit = defineEmits(checkboxEmits)
   defineOptions({
-    name: 'z-checkbox'
+    name: 'ZCheckbox'
   })
 
   const model = computed({

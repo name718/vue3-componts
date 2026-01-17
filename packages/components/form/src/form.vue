@@ -1,6 +1,6 @@
 <template>
   <form :class="bem.b()">
-    <slot></slot>
+    <slot />
   </form>
 </template>
 <script setup lang="ts">
@@ -12,7 +12,7 @@
 
   const bem = createNamespace('form')
   defineOptions({
-    name: 'z-form'
+    name: 'ZForm'
   })
   const props = defineProps(formProps)
   const fields: FormItemContext[] = []

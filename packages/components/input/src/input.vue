@@ -5,33 +5,33 @@
         v-if="slots.prepend"
         :class="bem.be('groud', 'prepend')"
       >
-        <slot name="prepend"></slot>
+        <slot name="prepend" />
       </div>
       <div :class="[bem.e('wrapper')]">
         <span
           v-if="slots.prefixIcon"
           :class="bem.e('prefix')"
         >
-          <slot name="prefixIcon"></slot>
+          <slot name="prefixIcon" />
         </span>
         <input
-          :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
           v-bind="attrs"
           ref="inputRef"
-          @input="handleInput"
-          @change="handleChange"
-          @blur="handleBlur"
-          @focus="handleFocus"
+          :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
           :placeholder="placeholder"
           :disabled="disabled"
           :readonly="readonly"
           :class="bem.e('inner')"
-        />
+          @input="handleInput"
+          @change="handleChange"
+          @blur="handleBlur"
+          @focus="handleFocus"
+        >
         <span
           v-if="slots.sufixIcon"
           :class="bem.e('suffix')"
         >
-          <slot name="sufixIcon"></slot>
+          <slot name="sufixIcon" />
         </span>
         <z-icon
           v-if="showPwdVisible"
@@ -52,7 +52,7 @@
         v-if="slots.append"
         :class="bem.be('groud', 'append')"
       >
-        <slot name="append"></slot>
+        <slot name="append" />
       </div>
     </div>
   </div>
@@ -78,7 +78,7 @@
   const props = defineProps(inputProps)
   const emit = defineEmits(inputEmits)
   defineOptions({
-    name: 'z-input',
+    name: 'ZInput',
     inheritAttrs: false
   })
   const slots = useSlots()

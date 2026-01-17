@@ -1,23 +1,25 @@
 <template>
   <div
-    @click="handleClick"
     :class="[bem.b()]"
+    @click="handleClick"
   >
     <template v-if="drag">
       <uploadDragger @file="uploadFiles">
-        <slot></slot>
+        <slot />
       </uploadDragger>
     </template>
-    <template v-else><slot></slot></template>
+    <template v-else>
+      <slot />
+    </template>
 
     <input
-      :name="name"
       ref="inputRef"
+      :name="name"
       type="file"
       :accept="accept"
       :multiple="multiple"
       @change="handleChange"
-    />
+    >
   </div>
 </template>
 <script setup lang="ts">

@@ -11,12 +11,12 @@
       :style="{ paddingLeft: `${node.level * 16}px` }"
     >
       <span
-        @click="handleExpand(node)"
         :class="[
           bem.e('expand-icon'),
           { expanded: props.expanded && !node.isLeaf },
           bem.is('leaf', node.isLeaf)
         ]"
+        @click="handleExpand(node)"
       >
         <z-icon size="25">
           <Switcher v-if="!isLoading" />
@@ -29,7 +29,7 @@
         :disabled="disabled"
         :indeterminate="indeterminate"
         @change="handleChange"
-      ></z-checkbox>
+      />
       <span
         :class="bem.e('label')"
         @click="handleSeleted"

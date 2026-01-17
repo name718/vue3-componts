@@ -2,7 +2,7 @@ import { defineComponent, onMounted, onUpdated, ref } from 'vue'
 import { virtualItemProps } from './props'
 
 export default defineComponent({
-  name: 'virtual-item',
+  name: 'VirtualItem',
   props: virtualItemProps,
   emits: ['itemResize'],
   setup(props, { emit }) {

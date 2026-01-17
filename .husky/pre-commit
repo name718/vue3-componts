@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Skip pre-commit checks for now
+# You can manually run: pnpm lint && pnpm format

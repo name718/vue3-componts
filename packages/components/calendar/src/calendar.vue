@@ -1,24 +1,34 @@
 <template>
   <div :class="nsCal.b()">
     <div :class="nsCal.e('header')">
-      <div :class="nsCal.e('title')">{{ currentDate }}</div>
+      <div :class="nsCal.e('title')">
+        {{ currentDate }}
+      </div>
       <div :class="nsCal.e('button-group')">
-        <z-button @click="($event) => selectDate('prev-year')">前一年</z-button>
+        <z-button @click="($event) => selectDate('prev-year')">
+          前一年
+        </z-button>
         <z-button @click="($event) => selectDate('prev-month')">
           上个月
         </z-button>
-        <z-button @click="($event) => selectDate('today')">今天</z-button>
+        <z-button @click="($event) => selectDate('today')">
+          今天
+        </z-button>
         <z-button @click="($event) => selectDate('next-month')">
           下个月
         </z-button>
-        <z-button @click="($event) => selectDate('next-year')">下一年</z-button>
+        <z-button @click="($event) => selectDate('next-year')">
+          下一年
+        </z-button>
       </div>
     </div>
     <div :class="nsCal.e('body')">
       <table :class="nsTable.b()">
         <thead>
           <tr>
-            <th v-for="day in weekDays">{{ day }}</th>
+            <th v-for="day in weekDays">
+              {{ day }}
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -27,10 +37,10 @@
             :key="rid"
           >
             <td
-              @click="($event) => handlePick(cell)"
               v-for="(cell, cid) in row"
               :key="cid"
               :class="[nsDay.b(), getCellClass(cell)]"
+              @click="($event) => handlePick(cell)"
             >
               <slot
                 name="date-cell"
@@ -62,7 +72,7 @@
   const nsCal = createNamespace('calendar')
   const nsTable = createNamespace('calendar-table')
   defineOptions({
-    name: 'z-calendar'
+    name: 'ZCalendar'
   })
   const nsDay = createNamespace('calendar-day')
 

@@ -4,7 +4,7 @@
     @dragleave.prevent="isOver = false"
     @drop="onDrop"
   >
-    <slot></slot>
+    <slot />
   </div>
 </template>
 <script lang="ts" setup>

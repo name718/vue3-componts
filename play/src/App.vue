@@ -287,7 +287,7 @@
     :keep="30"
     :estimate-size="80"
     :data-component="Item as DefineComponent<{}, {}, any>"
-  ></z-virtual-scroll-list>
+  />
 </template>
 <style lang="scss">
   .virtual-list {

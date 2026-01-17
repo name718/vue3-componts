@@ -1,6 +1,6 @@
 <template>
   <UploadContent v-bind="uploadContentProps">
-    <slot></slot>
+    <slot />
   </UploadContent>
 </template>
 
@@ -17,7 +17,7 @@
   import { computed, ref, watch } from 'vue'
   const props = defineProps(uploadProps)
   defineOptions({
-    name: 'z-upload'
+    name: 'ZUpload'
   })
   const emit = defineEmits({})
   const uploadFiles = ref<UploadFiles>(props.FileList)

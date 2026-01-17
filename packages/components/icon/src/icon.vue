@@ -1,6 +1,9 @@
 <template>
-  <i :class="bem.b()" :style="style">
-    <slot></slot>
+  <i
+    :class="bem.b()"
+    :style="style"
+  >
+    <slot />
   </i>
 </template>
 <script setup lang="ts">
@@ -9,7 +12,7 @@ import {iconProps} from "./icon";
 import {computed} from "vue";
 
 defineOptions({
-  name: "z-icon",
+  name: "ZIcon",
 })
 
 const bem = createNamespace("icon");

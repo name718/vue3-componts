@@ -12,9 +12,11 @@
       变量的值作为默认内容。 -->
     </label>
     <div :class="bem.e('content')">
-      <slot></slot>
+      <slot />
       <div :class="bem.e('error')">
-        <slot name="error">{{ validateMessage }}</slot>
+        <slot name="error">
+          {{ validateMessage }}
+        </slot>
       </div>
     </div>
   </div>
@@ -46,7 +48,7 @@
   const bem = createNamespace('form-item')
   const props = defineProps(formItemProps)
   defineOptions({
-    name: 'z-form-item'
+    name: 'ZFormItem'
   })
   const formContext = inject(formContextKey)
   const validateState = ref<FormItemValidateState>('')

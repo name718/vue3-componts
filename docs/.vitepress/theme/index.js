@@ -7,6 +7,6 @@ export default {
     ...DefaultTheme,
     enhanceApp({app}) {
         console.log(app)
-        app.component('z-icon', ZIcon);
+        app.component('ZIcon', ZIcon);
     }
 }
