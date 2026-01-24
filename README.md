@@ -1,4 +1,4 @@
-# MJT UI
+# Nova UI
 
 一个基于 Vue 3 的组件库
 
@@ -13,7 +13,7 @@
 ## 安装
 
 ```bash
-pnpm install @mjt/components @mjt/theme-chalk
+pnpm install @nova-ui/components @nova-ui/theme-chalk
 ```
 
 ## 快速开始
@@ -21,20 +21,20 @@ pnpm install @mjt/components @mjt/theme-chalk
 ```ts
 // main.ts
 import { createApp } from 'vue'
-import MjtUI from '@mjt/components'
-import '@mjt/theme-chalk/dist/index.css'
+import NovaUI from '@nova-ui/components'
+import '@nova-ui/theme-chalk/dist/index.css'
 import App from './App.vue'
 
 const app = createApp(App)
-app.use(MjtUI)
+app.use(NovaUI)
 app.mount('#app')
 ```
 
 ## 按需引入
 
 ```ts
-import { Button, Icon } from '@mjt/components'
-import '@mjt/theme-chalk/dist/index.css'
+import { Button, Icon } from '@nova-ui/components'
+import '@nova-ui/theme-chalk/dist/index.css'
 
 app.use(Button)
 app.use(Icon)

@@ -23,7 +23,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { createNamespace } from '@mjt/utils/create'
+  import { createNamespace } from '@nova-ui/utils/create'
   import { uploadContentProps } from './upload-content'
   import { genId, UploadRawFile } from './upload'
   import { ref } from 'vue'

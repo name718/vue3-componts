@@ -1,7 +1,7 @@
 <!-- <script setup lang="ts">
   import { ref } from 'vue'
   import { AddCircle } from '@vicons/ionicons5'
-  import { Key, TreeOptions } from '@mjt/components/tree'
+  import { Key, TreeOptions } from '@nova-ui/components/tree'
   function createData(level = 4, parentKey = ''): any {
     if (!level) return []
     const arr = new Array(6 - level).fill(0)
@@ -222,7 +222,7 @@
 </template> -->
 
 <!-- <script lang="ts" setup>
-  import { UploadRawFile } from '@mjt/components/upload'
+  import { UploadRawFile } from '@nova-ui/components/upload'
 
   const handleBeforeUpload = (fileRaw: UploadRawFile) => {
     console.log('before upload', fileRaw)

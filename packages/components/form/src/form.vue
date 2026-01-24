@@ -6,7 +6,7 @@
 <script setup lang="ts">
   import { provide } from 'vue'
   import { formProps, formContextKey, FormContext } from './form'
-  import { createNamespace } from '@mjt/utils/create'
+  import { createNamespace } from '@nova-ui/utils/create'
   import { FormItemContext } from './form-item'
   import { Values } from 'async-validator'
 

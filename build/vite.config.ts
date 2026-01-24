@@ -12,8 +12,8 @@ const __dirname = dirname(__filename)
 export default defineConfig({
   resolve: {
     alias: {
-      '@mjt/components': resolve(__dirname, '../packages/components'),
-      '@mjt/utils': resolve(__dirname, '../packages/utils')
+      '@nova-ui/components': resolve(__dirname, '../packages/components'),
+      '@nova-ui/utils': resolve(__dirname, '../packages/utils')
     }
   },
   plugins: [
@@ -37,7 +37,7 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'mjs' : 'cjs'}`
     },
     rollupOptions: {
-      external: ['vue', /^@mjt\/utils/, 'async-validator', 'dayjs'],
+      external: ['vue', /^@nova-ui\/utils/, 'async-validator', 'dayjs'],
       output: {
         exports: 'named',
         globals: {

@@ -1,4 +1,4 @@
-import { withInstall } from '@mjt/utils/with-install'
+import { withInstall } from '@nova-ui/utils/with-install'
 import _ZVirtualScrollList from './src/virtual-list'
 const VirtualList = withInstall(_ZVirtualScrollList)
 

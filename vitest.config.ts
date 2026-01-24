@@ -25,9 +25,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@mjt/components': resolve(__dirname, 'packages/components'),
-      '@mjt/utils': resolve(__dirname, 'packages/utils'),
-      '@mjt/theme-chalk': resolve(__dirname, 'packages/theme-chalk')
+      '@nova-ui/components': resolve(__dirname, 'packages/components'),
+      '@nova-ui/utils': resolve(__dirname, 'packages/utils'),
+      '@nova-ui/theme-chalk': resolve(__dirname, 'packages/theme-chalk')
     }
   }
 })

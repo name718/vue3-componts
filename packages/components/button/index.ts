@@ -1,5 +1,5 @@
 import _Button from './src/button.vue'
-import { withInstall } from '@mjt/utils/with-install'
+import { withInstall } from '@nova-ui/utils/with-install'
 
 const Button = withInstall(_Button)
 

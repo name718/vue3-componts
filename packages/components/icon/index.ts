@@ -1,4 +1,4 @@
-import {withInstall} from "@mjt/utils/with-install";
+import {withInstall} from "@nova-ui/utils/with-install";
 import _Icon from './src/icon.vue'
 
 const Icon = withInstall(_Icon)

@@ -1,7 +1,7 @@
 {
-  "name": "@mjt/theme-chalk",
+  "name": "@nova-ui/theme-chalk",
   "version": "1.0.0",
-  "description": "Theme for MJT UI Components",
+  "description": "Theme for Nova UI Components",
   "main": "dist/index.css",
   "style": "dist/index.css",
   "exports": {

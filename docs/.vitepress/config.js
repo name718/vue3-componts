@@ -1,14 +1,14 @@
 module.exports = {
-    title: 'MJT UI',
+    title: 'Nova UI',
     description: '基于 Vue 3 的高质量组件库',
     head: [
         ['link', { rel: 'icon', href: '/favicon.ico' }],
-        ['meta', { name: 'keywords', content: 'Vue3, 组件库, UI, TypeScript, MJT UI' }],
-        ['meta', { name: 'author', content: 'majuntao' }]
+        ['meta', { name: 'keywords', content: 'Vue3, 组件库, UI, TypeScript, Nova UI' }],
+        ['meta', { name: 'author', content: 'name718' }]
     ],
     themeConfig: {
         logo: '/logo.svg',
-        siteTitle: 'MJT UI',
+        siteTitle: 'Nova UI',
         lastUpdated: {
             text: '最后更新时间',
             formatOptions: {
@@ -28,15 +28,15 @@ module.exports = {
         sidebarMenuLabel: '菜单',
         returnToTopLabel: '回到顶部',
         editLink: {
-            pattern: 'https://github.com/yourusername/mjt-ui/edit/main/docs/:path',
+            pattern: 'https://github.com/name718/vue3-componts/edit/main/docs/:path',
             text: '在 GitHub 上编辑此页'
         },
         footer: {
             message: 'Released under the ISC License.',
-            copyright: 'Copyright © 2024-present majuntao'
+            copyright: 'Copyright © 2024-present name718'
         },
         socialLinks: [
-            { icon: 'github', link: 'https://github.com/yourusername/mjt-ui' }
+            { icon: 'github', link: 'https://github.com/name718/vue3-componts' }
         ],
         nav: [
             {

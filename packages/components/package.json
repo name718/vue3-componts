@@ -1,5 +1,5 @@
 {
-  "name": "@mjt/components",
+  "name": "@nova-ui/components",
   "version": "1.0.0",
   "description": "A Vue 3 Component Library",
   "main": "dist/index.cjs",
@@ -31,7 +31,7 @@
     "ui",
     "library"
   ],
-  "author": "@mjt",
+  "author": "@nova-ui",
   "license": "ISC",
   "dependencies": {
     "unplugin-vue-define-options": "^1.5.2"

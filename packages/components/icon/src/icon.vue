@@ -7,7 +7,7 @@
   </i>
 </template>
 <script setup lang="ts">
-import {createNamespace} from "@mjt/utils/create";
+import {createNamespace} from "@nova-ui/utils/create";
 import {iconProps} from "./icon";
 import {computed} from "vue";
 

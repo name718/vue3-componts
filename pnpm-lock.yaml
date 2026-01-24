@@ -11,13 +11,13 @@ importers:
       '@eslint/js':
         specifier: ^9.16.0
         version: 9.39.2
-      '@mjt/components':
+      '@nova-ui/components':
         specifier: workspace:*
         version: link:packages/components
-      '@mjt/theme-chalk':
+      '@nova-ui/theme-chalk':
         specifier: workspace:*
         version: link:packages/theme-chalk
-      '@mjt/utils':
+      '@nova-ui/utils':
         specifier: workspace:*
         version: link:packages/utils
       '@types/mockjs':

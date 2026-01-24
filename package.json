@@ -1,9 +1,9 @@
 {
-  "name": "mjt-ui-monorepo",
+  "name": "nova-ui-monorepo",
   "version": "1.0.0",
   "private": "true",
   "type": "module",
-  "description": "MJT UI Component Library",
+  "description": "Nova UI Component Library",
   "main": "index.js",
   "scripts": {
     "dev": "pnpm -C play dev",
@@ -31,9 +31,9 @@
   "license": "ISC",
   "dependencies": {
     "@eslint/js": "^9.16.0",
-    "@mjt/components": "workspace:*",
-    "@mjt/theme-chalk": "workspace:*",
-    "@mjt/utils": "workspace:*",
+    "@nova-ui/components": "workspace:*",
+    "@nova-ui/theme-chalk": "workspace:*",
+    "@nova-ui/utils": "workspace:*",
     "@types/mockjs": "^1.0.10",
     "async-validator": "^4.2.5",
     "dayjs": "^1.11.13",

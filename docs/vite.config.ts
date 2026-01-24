@@ -8,9 +8,9 @@ export default defineConfig({
     plugins: [DefineOptions()],
     resolve: {
         alias: {
-            '@mjt/components': path.resolve(__dirname, '../packages/components'),
-            '@mjt/theme-chalk': path.resolve(__dirname, '../packages/theme-chalk'),
-            '@mjt/utils': path.resolve(__dirname, '../packages/utils'),
+            '@nova-ui/components': path.resolve(__dirname, '../packages/components'),
+            '@nova-ui/theme-chalk': path.resolve(__dirname, '../packages/theme-chalk'),
+            '@nova-ui/utils': path.resolve(__dirname, '../packages/utils'),
         }
     }
 })

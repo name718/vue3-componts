@@ -1,4 +1,4 @@
-import { withInstall } from '@mjt/utils/with-install'
+import { withInstall } from '@nova-ui/utils/with-install'
 import _Checkbox from './src/checkbox.vue'
 const Checkbox = withInstall(_Checkbox)
 

@@ -1,4 +1,4 @@
-import { createNamespace } from '@mjt/utils/create'
+import { createNamespace } from '@nova-ui/utils/create'
 import { transform } from 'typescript'
 import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 

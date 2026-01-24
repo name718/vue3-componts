@@ -8,7 +8,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { createNamespace } from '@mjt/utils/create'
+  import { createNamespace } from '@nova-ui/utils/create'
   import { ref } from 'vue'
   const bem = createNamespace('upload-dragger')
   const isOver = ref(false)

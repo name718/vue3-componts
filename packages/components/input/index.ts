@@ -1,4 +1,4 @@
-import { withInstall } from '@mjt/utils/with-install'
+import { withInstall } from '@nova-ui/utils/with-install'
 import _Input from './src/input.vue'
 const Input = withInstall(_Input)
 

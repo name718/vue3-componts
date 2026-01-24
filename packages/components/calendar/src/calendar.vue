@@ -56,8 +56,8 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { createNamespace } from '@mjt/utils/create'
-  import ZButton from '@mjt/components/button'
+  import { createNamespace } from '@nova-ui/utils/create'
+  import ZButton from '@nova-ui/components/button'
   import dayjs from 'dayjs'
   import type { Dayjs } from 'dayjs'
   import { computed, ref } from 'vue'

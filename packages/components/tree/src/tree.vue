@@ -25,7 +25,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { createNamespace } from '@mjt/utils/create'
+  import { createNamespace } from '@nova-ui/utils/create'
   import {
     treeProps,
     TreeNode,
@@ -36,7 +36,7 @@
   } from './tree'
   import { computed, onMounted, provide, ref, useSlots, watch } from 'vue'
   import ZTreeNode from './treeNode.vue'
-  import ZVirtualList from '@mjt/components/virtual-list'
+  import ZVirtualList from '@nova-ui/components/virtual-list'
 
   defineOptions({ name: 'ZTree' })
   const props = defineProps(treeProps)

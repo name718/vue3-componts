@@ -2,12 +2,12 @@
 layout: home
 
 hero:
-  name: MJT UI
+  name: Nova UI
   text: 基于 Vue 3 的组件库
   tagline: 开箱即用的高质量 Vue 3 组件库，助力快速构建企业级应用
   image:
     src: /logo.svg
-    alt: MJT UI
+    alt: Nova UI
   actions:
     - theme: brand
       text: 快速开始
@@ -17,7 +17,7 @@ hero:
       link: /component/icon
     - theme: alt
       text: GitHub
-      link: https://github.com/yourusername/mjt-ui
+      link: https://github.com/name718/vue3-componts
 
 features:
   - icon: 🎨
@@ -51,15 +51,15 @@ features:
 ::: code-group
 
 ```bash [pnpm]
-pnpm install @mjt/components @mjt/theme-chalk
+pnpm install @nova-ui/components @nova-ui/theme-chalk
 ```
 
 ```bash [npm]
-npm install @mjt/components @mjt/theme-chalk
+npm install @nova-ui/components @nova-ui/theme-chalk
 ```
 
 ```bash [yarn]
-yarn add @mjt/components @mjt/theme-chalk
+yarn add @nova-ui/components @nova-ui/theme-chalk
 ```
 
 :::
@@ -68,20 +68,20 @@ yarn add @mjt/components @mjt/theme-chalk
 
 ```vue
 <template>
-  <mjt-button type="primary">主要按钮</mjt-button>
-  <mjt-button type="success">成功按钮</mjt-button>
-  <mjt-button type="warning">警告按钮</mjt-button>
+  <nova-button type="primary">主要按钮</nova-button>
+  <nova-button type="success">成功按钮</nova-button>
+  <nova-button type="warning">警告按钮</nova-button>
 </template>
 
 <script setup>
-import { MjtButton } from '@mjt/components'
-import '@mjt/theme-chalk/dist/index.css'
+import { NovaButton } from '@nova-ui/components'
+import '@nova-ui/theme-chalk/dist/index.css'
 </script>
 ```
 
 ## 组件列表
 
-MJT UI 提供了以下组件：
+Nova UI 提供了以下组件：
 
 - **Button** - 按钮组件，支持多种类型和尺寸
 - **Icon** - 图标组件，灵活的图标解决方案
@@ -94,7 +94,7 @@ MJT UI 提供了以下组件：
 - **VirtualList** - 虚拟列表，高性能大数据渲染
 - **VirtualScrollList** - 虚拟滚动列表，优化滚动性能
 
-## 为什么选择 MJT UI？
+## 为什么选择 Nova UI？
 
 <div class="why-choose">
   <div class="reason">

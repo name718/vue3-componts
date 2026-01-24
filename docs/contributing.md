@@ -1,6 +1,6 @@
 # 贡献指南
 
-感谢你考虑为 MJT UI 做出贡献！
+感谢你考虑为 Nova UI 做出贡献！
 
 ## 开发设置
 
@@ -12,8 +12,8 @@
 ### 克隆项目
 
 ```bash
-git clone https://github.com/yourusername/mjt-ui.git
-cd mjt-ui
+git clone https://github.com/name718/vue3-componts.git
+cd vue3-componts
 ```
 
 ### 安装依赖
@@ -35,7 +35,7 @@ pnpm doc:dev
 ## 项目结构
 
 ```
-mjt-ui/
+nova-ui/
 ├── packages/
 │   ├── components/     # 组件源码
 │   │   ├── button/     # 按钮组件
@@ -221,7 +221,7 @@ git commit -m "test(input): add input component tests"
 
 如果你发现了 Bug 或有新的功能建议，欢迎：
 
-- 提交 [Issue](https://github.com/yourusername/mjt-ui/issues)
+- 提交 [Issue](https://github.com/name718/vue3-componts/issues)
 - 加入讨论组
 - 发送邮件
 

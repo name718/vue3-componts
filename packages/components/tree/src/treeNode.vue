@@ -47,11 +47,11 @@
     TreeNode,
     treeInjectKey
   } from './tree'
-  import { createNamespace } from '@mjt/utils/create'
-  import Switcher from '@mjt/components/internal-icon/Switcher'
-  import Loading from '@mjt/components/internal-icon/Loading'
-  import ZIcon from '@mjt/components/icon'
-  import ZCheckbox from '@mjt/components/checkbox'
+  import { createNamespace } from '@nova-ui/utils/create'
+  import Switcher from '@nova-ui/components/internal-icon/Switcher'
+  import Loading from '@nova-ui/components/internal-icon/Loading'
+  import ZIcon from '@nova-ui/components/icon'
+  import ZCheckbox from '@nova-ui/components/checkbox'
   import ZTreeNodeContent from './tree-node-content'
 
   const props = defineProps(treeNodeProps)

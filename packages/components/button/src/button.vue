@@ -35,10 +35,10 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { createNamespace } from '@mjt/utils/create'
+  import { createNamespace } from '@nova-ui/utils/create'
   import { buttonEmits, buttonProps } from './button'
-  import LoadingComponent from '@mjt/components/internal-icon/Loading'
-  import ZIcon from '@mjt/components/icon'
+  import LoadingComponent from '@nova-ui/components/internal-icon/Loading'
+  import ZIcon from '@nova-ui/components/icon'
   import { useSlots, type Slots } from 'vue'
   
   defineOptions({

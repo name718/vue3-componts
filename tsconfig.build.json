@@ -7,7 +7,7 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "@mjt/*": ["packages/*"]
+      "@nova-ui/*": ["packages/*"]
     }
   },
   "include": [

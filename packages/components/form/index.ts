@@ -1,4 +1,4 @@
-import { withInstall } from '@mjt/utils/with-install'
+import { withInstall } from '@nova-ui/utils/with-install'
 import _FromItem from './src/form-item.vue'
 import _From from './src/form.vue'
 

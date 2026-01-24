@@ -20,7 +20,7 @@
   </label>
 </template>
 <script setup lang="ts">
-  import { createNamespace } from '@mjt/utils/create'
+  import { createNamespace } from '@nova-ui/utils/create'
   import { checkboxEmits, checkboxProps } from './checkbox'
   import { computed, onMounted, watch, ref } from 'vue'
 
