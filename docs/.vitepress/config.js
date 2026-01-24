@@ -59,7 +59,8 @@ module.exports = {
                     text: '开发指南',
                     items: [
                         { text: '介绍', link: '/component/introduction' },
-                        { text: '快速上手', link: '/component/quickstart' }
+                        { text: '快速上手', link: '/component/quickstart' },
+                        { text: '贡献指南', link: '/component/contributing' }
                     ]
                 },
                 {
