@@ -47,3 +47,9 @@ coverage
 # Husky (keep hooks)
 !.husky/
 .husky/_
+
+# VitePress
+docs/.vitepress/cache
+docs/.vitepress/dist
+.vitepress/cache
+.vitepress/dist

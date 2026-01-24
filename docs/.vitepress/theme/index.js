@@ -1,12 +1,9 @@
 import DefaultTheme from 'vitepress/theme';
-import ZIcon from '@mjt/components/icon'
-import '@mjt/theme-chalk/src/index.scss'
+import './custom.css'
 
-console.log(ZIcon)
 export default {
     ...DefaultTheme,
     enhanceApp({app}) {
-        console.log(app)
-        app.component('ZIcon', ZIcon);
+        // 组件可以在需要时按需导入
     }
 }
