@@ -40,41 +40,28 @@ module.exports = {
         ],
         nav: [
             {
-                text: '指南',
-                link: '/guide/installation',
-                activeMatch: '/guide/'
-            },
-            {
                 text: '组件',
-                link: '/component/icon',
+                link: '/component/introduction',
                 activeMatch: '/component/'
             },
             {
-                text: '资源',
-                items: [
-                    { text: 'Changelog', link: '/changelog' },
-                    { text: '贡献指南', link: '/contributing' }
-                ]
+                text: '更新日志',
+                link: '/changelog'
             },
             {
-                text: 'v1.0.0',
-                items: [
-                    { text: '更新日志', link: '/changelog' },
-                    { text: '参与贡献', link: '/contributing' }
-                ]
+                text: 'GitHub',
+                link: 'https://github.com/name718/vue3-componts'
             }
         ],
         sidebar: {
-            '/guide/': [
-                {
-                    text: '开始',
-                    items: [
-                        { text: '安装', link: '/guide/installation' },
-                        { text: '快速开始', link: '/guide/quieStart' }
-                    ]
-                }
-            ],
             '/component/': [
+                {
+                    text: '开发指南',
+                    items: [
+                        { text: '介绍', link: '/component/introduction' },
+                        { text: '快速上手', link: '/component/quickstart' }
+                    ]
+                },
                 {
                     text: '基础组件',
                     items: [
